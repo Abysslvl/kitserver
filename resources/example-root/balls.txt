@@ -1,0 +1,5 @@
+﻿# Balls map (encoding must be UTF-8).
+# demo has 32 balls, so ball indices go from 1 to 32
+# format: <ball-index>, "<name>"
+
+10, "Kitserver Adidas SpeedCell"

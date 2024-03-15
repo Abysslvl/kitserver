@@ -1,9 +1,0 @@
-To build, use Visual Studio C++ (version 9.0 was tried, but it
-should be possible to build with older versions)
-
-1. setenv.cmd - (modify paths as necessary), run to set environment
-variables
-
-2. nmake             - to do a release build
-   or nmake debug=1  - to do a debug build
-

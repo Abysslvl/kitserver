@@ -1,5 +1,0 @@
-﻿# Songs map (encoding must be UTF-8).
-# format: <bin-id>, "<title>", "<artist>"
-
-45, "Вне зоны доступа", "Город 312"
-

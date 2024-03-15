@@ -1,5 +1,0 @@
-﻿# Balls map (encoding must be UTF-8).
-# demo has 28 balls, so ball ids go from 1 to 28
-# format: <ball-id>, "<name>"
-
-9,"Найке-Омни Бело-Синий 9"

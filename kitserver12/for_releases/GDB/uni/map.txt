@@ -1,5 +1,0 @@
-101, "EPL\Arsenal"
-102, "EPL\Chelsea"
-
-14, "National\Germany"
-31, "National\Russia"

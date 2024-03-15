@@ -1,0 +1,14 @@
+[afs2fs]
+img.dir = "example-root"
+
+[kload]
+dll = afsio
+dll = kserv
+dll = fserv
+dll = afs2fs
+dll = lodmixer
+dll = speeder
+dll = sides
+
+[speeder]
+count.factor = 1.0
