@@ -7,7 +7,7 @@ add_library(${PROJECT_NAME} SHARED
 	${GDB_OBJ}
 )
 
-# link to kserv dependencies
+# Link to kserv dependencies
 target_link_libraries(${PROJECT_NAME} ZLIB)
 target_link_libraries(${PROJECT_NAME} D3DX9)
 

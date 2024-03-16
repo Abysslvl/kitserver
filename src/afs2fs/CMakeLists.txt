@@ -6,7 +6,7 @@ add_library(${PROJECT_NAME} SHARED
 	${CONFIGS_OBJ} 
 )
 
-# link to afs2fs dependencies
+# Link to afs2fs dependencies
 target_link_libraries(${PROJECT_NAME} shlwapi.lib)
 
 register_module(${PROJECT_NAME})

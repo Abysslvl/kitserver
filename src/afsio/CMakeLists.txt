@@ -5,10 +5,10 @@ add_library(${PROJECT_NAME} SHARED
 	afsreader.cpp afsreader.h
 )
 
-# include afsio directories for modules
+# Include afsio directories for modules
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# link to afsio dependencies
+# Link to afsio dependencies
 target_link_libraries(${PROJECT_NAME} pngdib)
 
 register_module(${PROJECT_NAME})
