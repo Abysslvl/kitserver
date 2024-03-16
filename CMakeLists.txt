@@ -12,10 +12,7 @@ if(ZLIB_LIB)
     # Set target zlib properties
     set(ZLIB_DIR ${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.2.3)
 	
-    set_target_properties(ZLIB PROPERTIES
-        IMPORTED_LOCATION ${ZLIB_DIR}/bin/zlib1.dll
-        IMPORTED_IMPLIB ${ZLIB_LIB}	
-    )
+    set_target_properties(ZLIB PROPERTIES IMPORTED_IMPLIB ${ZLIB_LIB})
     target_include_directories(ZLIB INTERFACE ${ZLIB_DIR}/include)	
 else()
     message("ZLIB not found. Please install it.")
@@ -29,12 +26,8 @@ if(PNG_LIB)
     # Set libpng properties
     set(PNG_DIR ${CMAKE_SOURCE_DIR}/thirdparty/libpng-1.2.8)
  
-    set_target_properties(PNG PROPERTIES
-    IMPORTED_LOCATION ${PNG_DIR}/bin/libpng13.dll
-    IMPORTED_IMPLIB ${PNG_LIB}
-    )
+    set_target_properties(PNG PROPERTIES IMPORTED_IMPLIB ${PNG_LIB})
     target_include_directories(PNG INTERFACE ${PNG_DIR}/include)
-    message(${PNG_LIB} ${PNG} PNG_DIR )
 else()
     message("LIBPNG not found. Please install it.")
 endif()
@@ -80,7 +73,7 @@ message("Kitserver compile definitions: ${KITSERVER_COMPILE_DEFINITIONS}")
 # kitserver directories
 set(SHARED_DIR ${CMAKE_SOURCE_DIR}/src/shared)
 set(CONFIGURE_DIR ${CMAKE_BINARY_DIR}/src/kconf)
-set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/install/kitserver)
+set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/install/)
 set(THIRDPARTY_DIR ${CMAKE_SOURCE_DIR}/thirdparty)
 
 message("Kitserver directories:
@@ -131,7 +124,6 @@ add_subdirectory(src/sides)
 
 #install dependencies
 install(
-    FILES ${THIRDPARTY_DIR}/zlib-1.2.3/bin/zlib1.dll 
-    FILES ${THIRDPARTY_DIR}/libpng-1.2.8/bin/libpng13.dll
+    FILES ${THIRDPARTY_DIR}/zlib-1.2.3/bin/zlib1.dll ${THIRDPARTY_DIR}/libpng-1.2.8/bin/libpng13.dll
     DESTINATION ${INSTALL_DIR}
 )
