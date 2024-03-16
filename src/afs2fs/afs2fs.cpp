@@ -461,7 +461,7 @@ HRESULT STDMETHODCALLTYPE initModule(IDirect3D9* self, UINT Adapter,
     HookCallPoint(code[C_READ_BALLS], afsReadBallsCallPoint, 6, 2);
 	TRACE(L"Hooking done.");
 
-    if (getPesInfo()->gameVersion >= gvPES2011demo)
+    if (getPesInfo()->gameVersion >= gvPES2013demo)
     {
         BYTE* bptr = (BYTE*)dta[SONGS_INFO_TABLE];
         if (bptr)

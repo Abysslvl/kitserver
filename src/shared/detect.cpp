@@ -8,135 +8,27 @@
 #include "manage.h"
 
 wchar_t* GAME[] = {
-    L"PES2011 demo",
-    L"PES2011",
-    L"PES2011",
-    L"PES2011 v1.01",
-    L"PES2011 v1.01",
-    L"PES2011 v1.02",
-    L"PES2011 v1.03",
-    L"PES2012 demo",
-    L"PES2012 demo2",
-    L"PES2012",
-    L"PES2012",
-    L"PES2012 v1.01",
-    L"PES2012 v1.01",
-    L"PES2012 v1.02",
-    L"PES2012 v1.02",
-    L"PES2012 v1.03",
-    L"PES2012 v1.03",
-    L"PES2012 v1.06",
-    L"PES2012 v1.06",
+    L"PES2013 demo",
 };
 
 char* GAME_GUID[] = {
-    "Pro Evolution Soccer 2011 DEMO",
-    "Pro Evolution Soccer 2011",
-    "Pro Evolution Soccer 2011",
-    "Pro Evolution Soccer 2011",
-    "Pro Evolution Soccer 2011",
-    "1.02",
-    "1.03",
-    "Pro Evolution Soccer 2012 DEMO",
-    "Pro Evolution Soccer 2012 DEMO2",
-    "Pro Evolution Soccer 2012",
-    "Pro Evolution Soccer 2012",
-    "1.01",
-    "1.01",
-    "1.02",
-    "1.02",
-    "1.03",
-    "1.03",
-    "1.06",
-    "1.06",
+    "1.00",
 };
 
 DWORD GAME_GUID_OFFSETS[] = { 
-    0xfa2f68, 
-    0xf23264, 
-    0xf23a64, 
-    0xf237bc,
-    0xf22bbc,
-    0x1027ae0,
-    0x1027ae0,
-    0x10d0140,
-    0x10e5810,
-    0x111de88,
-    0x11445f8,
-    0x1150d68,
-    0x1150168,
-    0x1152bb8,
-    0x1151fb8,
-    0x11559c8,
-    0x1154dc8,
-    0x1153238,
-    0x1152638,
+    0x1072EA8,
 };
 
 DWORD GAME_GUID_MEMORY[] = { 
-    0x13a4968, 
-    0x1323a64, 
-    0x1323a64, 
-    0x13239bc,
-    0x13239bc,
-    0x1427ae0,
-    0x1427ae0,
-    0x14d1140,
-    0x14e6a10,
-    0x151f088,
-    0x1544bf8,
-    0x1551968,
-    0x1551968,
-    0x1553bb8,
-    0x1553bb8,
-    0x1555bc8,
-    0x1555bc8,
-    0x1553c38,
-    0x1553c38,
+    0x14746A8,
 };
 
 BYTE BASE_GAME[] = {
-    gvPES2011demo,
-    gvPES2011,
-    gvPES2011,
-    gvPES2011v101,
-    gvPES2011v101,
-    gvPES2011v102,
-    gvPES2011v103,
-    gvPES2012demo,
-    gvPES2012demo2,
-    gvPES2012,
-    gvPES2012,
-    gvPES2012v101,
-    gvPES2012v101,
-    gvPES2012v102,
-    gvPES2012v102,
-    gvPES2012v103,
-    gvPES2012v103,
-    gvPES2012v106,
-    gvPES2012v106,
+    gvPES2013demo,
 };
 
 bool ISGAME[] = {
-    true,   // PES2011 demo
-    true,   // PES2011
-    true,   // PES2011 nodvd
-    true,   // PES2011 v1.01 
-    true,   // PES2011 v1.01 nodvd
-    true,   // PES2011 v1.02
-    true,   // PES2011 v1.03
-    true,   // PES2012 demo
-    true,   // PES2012 demo2
-    true,   // PES2012
-    true,   // PES2012
-    true,   // PES2012 v1.01
-    true,   // PES2012 v1.01 reloaded
-    true,   // PES2012 v1.02 
-    true,   // PES2012 v1.02 reloaded
-    true,   // PES2012 v1.03 
-    true,   // PES2012 v1.03 reloaded
-    true,   // PES2012 v1.06 
-    true,   // PES2012 v1.06 reloaded
+    true,   // PES2013 demo
 };
 
 // Returns the game real version id
