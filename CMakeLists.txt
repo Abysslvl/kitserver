@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.28.0)
-project (kitserver VERSION 13.0.0.0)
+project (kitserver VERSION 13.4.0.0)
 
-set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2012 Juce, Robbie, jminhano")
+set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2024 Juce, Robbie, jminhano")
 
 # Thirdparty dependencies
 find_library(ZLIB_LIB zdll PATHS ${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.2.3/lib)

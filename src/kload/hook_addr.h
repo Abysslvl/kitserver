@@ -1,10 +1,11 @@
 // ADDRESSES for hook.cpp
 #define CODELEN 19
-enum {
-	C_D3DCREATE_CS,
-	C_LOADTEXTUREFORPLAYER_CS, C_LOADTEXTUREFORPLAYER,
-	TBL_BEGINRENDER1,	TBL_BEGINRENDER2,
-	C_EDITCOPYPLAYERNAME_CS, C_COPYSTRING_CS,
+enum 
+{
+    C_D3DCREATE_CS,
+    C_LOADTEXTUREFORPLAYER_CS, C_LOADTEXTUREFORPLAYER,
+    TBL_BEGINRENDER1,	TBL_BEGINRENDER2,
+    C_EDITCOPYPLAYERNAME_CS, C_COPYSTRING_CS,
     C_SUB_MENUMODE, C_ADD_MENUMODE,
     C_READ_FILE, C_WRITE_FILE,
     C_COPY_DATA, C_COPY_DATA2,
@@ -14,10 +15,10 @@ enum {
     C_READ_DATA,
 };
 
-#define NOCODEADDR {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+#define NOCODEADDR {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 DWORD codeArray[][CODELEN] = { 
-  // PES2013 demo
-  {
+    // PES2013 demo
+    {
         0x10D2A45,
         0, 0, 
         0, 0, 
@@ -29,7 +30,17 @@ DWORD codeArray[][CODELEN] = {
         0,
         0, 0,
         0,
-  },
+    },
+    // PES2013 v1.00
+    NOCODEADDR
+    // PES2013 v1.01
+    NOCODEADDR
+    // PES2013 v1.02
+    NOCODEADDR
+    // PES2013 v1.03
+    NOCODEADDR
+    // PES2013 v1.04
+    NOCODEADDR
 };
 
 #define DATALEN 13
@@ -51,13 +62,33 @@ DWORD dataArray[][DATALEN] = {
         0, 0, 0,
         123, 456, 789,
     },
+    // PES2013 v1.00
+    NODATAADDR
+    // PES2013 v1.01
+    NODATAADDR
+    // PES2013 v1.02
+    NODATAADDR
+    // PES2013 v1.03
+    NODATAADDR
+    // PES2013 v1.04
+    NODATAADDR
 };
 
 #define LTFPLEN 15
 #define NOLTFPADDR {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 BYTE ltfpPatchArray[][LTFPLEN] = {
-    // PES2013 DEMO
+    // PES2013 demo
 	NOLTFPADDR
+    // PES2013 v1.00
+    NOLTFPADDR
+    // PES2013 v1.01
+    NOLTFPADDR
+    // PES2013 v1.02
+    NOLTFPADDR
+    // PES2013 v1.03
+    NOLTFPADDR
+    // PES2013 v1.04
+    NOLTFPADDR
 };
 
 DWORD code[CODELEN];

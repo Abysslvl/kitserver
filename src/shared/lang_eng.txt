@@ -8,9 +8,9 @@ which is located in the in the "docs" subfolder.
 
 Do you want to open the manual now?$$
 #########################################
-HelpTextTitle = $$Kitserver 12 short help$$
+HelpTextTitle = $$Kitserver short help$$
 ManualPath = $$.\\docs\\manual.html$$
-MsgTitle = $$Kitserver 12 Setup Message$$
+MsgTitle = $$Kitserver Setup Message$$
 #########################################
 Err_UnknownExe = $$======== WRONG FILE! =========
 File %s is an unknown EXE-file.

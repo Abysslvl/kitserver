@@ -20,10 +20,10 @@ BEGIN
 	BEGIN
 		BLOCK "040904b0"
 		BEGIN
-			VALUE "FileDescription", "KitServer 12 Configuration Tool\0"
+			VALUE "FileDescription", "KitServer Configuration Tool\0"
 			VALUE "FileVersion", KITSERVER_VERSION_STRING
 			VALUE "LegalCopyright", KITSERVER_COPYRIGHT
-			VALUE "Comments", "Configures KitServer 12\0"
+			VALUE "Comments", "Configures KitServer\0"
 		END
 	END
 	BLOCK "VarFileInfo"

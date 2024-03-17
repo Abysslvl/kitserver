@@ -59,7 +59,7 @@ void MyMessageBox(wchar_t* fmt, DWORD value)
 	wchar_t buf[BUFLEN];
 	ZeroMemory(buf, WBUFLEN);
 	swprintf(buf, fmt, value);
-	MessageBox(hWnd, buf, L"Kitserver 12 DEBUG MyMessage", 0);
+	MessageBox(hWnd, buf, L"Kitserver DEBUG MyMessage", 0);
 #endif
 }
 
@@ -70,7 +70,7 @@ void MyMessageBox2(wchar_t* fmt, wchar_t* value)
 	wchar_t buf[BUFLEN];
 	ZeroMemory(buf, WBUFLEN);
 	swprintf(buf, fmt, value);
-	MessageBox(hWnd, buf, L"Kitserver 12 DEBUG MyMessage", 0);
+	MessageBox(hWnd, buf, L"Kitserver DEBUG MyMessage", 0);
 #endif
 }
 
@@ -284,7 +284,7 @@ Couldn't find LoadLibraryA in\n\
 					ZeroMemory(buf, WBUFLEN);
 					swprintf(buf, L"\
 ======== INFORMATION! =========\n\
-Kitserver 12 is already installed (1) for\n\
+Kitserver is already installed (1) for\n\
 %s.", fileName);
 	
 					wcscat(outmsg, buf);
@@ -399,7 +399,7 @@ Kitserver 12 is already installed (1) for\n\
 					ZeroMemory(mbuf, WBUFLEN);
 					swprintf(mbuf, L"\
 ======== INFORMATION! =========\n\
-Kitserver 12 is already installed (2) for\n\
+Kitserver is already installed (2) for\n\
 %s.", fileName);
 	
 					wcscat(outmsg, mbuf);
@@ -429,7 +429,7 @@ Kitserver 12 is already installed (2) for\n\
 			ZeroMemory(buf, WBUFLEN);
 			swprintf(buf, L"\
 ======== SUCCESS! =========\n\
-Setup has installed Kitserver 12 for\n\
+Setup has installed Kitserver for\n\
 %s.", fileName);
 	
 			wcscat(outmsg, buf);
@@ -442,7 +442,7 @@ Setup has installed Kitserver 12 for\n\
 			ZeroMemory(buf, WBUFLEN);
 			swprintf(buf, L"\
 ======== ERROR! =========\n\
-Setup failed to install Kitserver 12 for\n\
+Setup failed to install Kitserver for\n\
 %s.\n\
 \n\
 (No modifications made.)\n\
@@ -587,7 +587,7 @@ bool RemoveKserv(wstring& gfile, wstring& sfile, wstring& outs, const bool quiet
 					ZeroMemory(buf, WBUFLEN);
 					swprintf(buf, L"\
 ======== INFORMATION! =========\n\
-Kitserver 12 is not attached to\n\
+Kitserver is not attached to\n\
 %s.", fileName);
 	
 					wcscat(outmsg, buf);
@@ -695,7 +695,7 @@ Kitserver 12 is not attached to\n\
 			ZeroMemory(buf, WBUFLEN);
 			swprintf(buf, L"\
 ======== SUCCESS! =========\n\
-Setup has removed Kitserver 12 from\n\
+Setup has removed Kitserver from\n\
 %s.", fileName);
 	
 			wcscat(outmsg, buf);
@@ -708,7 +708,7 @@ Setup has removed Kitserver 12 from\n\
 			ZeroMemory(buf, WBUFLEN);
 			swprintf(buf, L"\
 ======== ERROR! =========\n\
-Setup failed to remove Kitserver 12 from\n\
+Setup failed to remove Kitserver from\n\
 %s.\n\
 \n\
 (No modifications made.)\n\
@@ -796,12 +796,12 @@ executable.\0");
 			bool rdataFound(false);
             if (GetGameVersion(GetRealGameVersion(fileName)) >= gvPES2013demo) {
                 rdataFound = SeekSectionHeader(f,".data");
-                MyMessageBox(L"it is gvPES2012! (%d)", 
+                MyMessageBox(L"it is gvPES2013! (%d)", 
                         GetRealGameVersion(fileName));
             } 
             else {
                 rdataFound = SeekSectionHeader(f, ".rdata");
-                MyMessageBox(L"it is NOT gvPES2012... (%d)", 
+                MyMessageBox(L"it is NOT gvPES2013... (%d)", 
                         GetRealGameVersion(fileName));
             }
             if (!rdataFound) rdataFound = SeekSectionHeader(f, ".rsrc");

@@ -1,6 +1,7 @@
 // ADDRESSES for lodmixer.cpp
 BYTE allowedGames[] = {
     gvPES2013demo,
+    gvPES2013v104
 };
 
 #define CODELEN 3
@@ -8,12 +9,24 @@ enum {
     C_SETTINGS_READ, C_QUALITY_CHECK, C_QUALITY_CHECK_2,
 };
 
-#define NOCODEADDR {0,0,0}
+#define NOCODEADDR {0,0,0},
 DWORD codeArray[][CODELEN] = { 
     // PES2013 demo
     {
-        0x11a2ab3, 0x11A5BDF, 0x11A5961,
+        0x11A2AB3, 0x11A5BDF, 0x11A5961,
     },
+    // PES2013 v1.00
+    NOCODEADDR
+    // PES2013 v1.01
+    NOCODEADDR
+    // PES2013 v1.02
+    NOCODEADDR
+    // PES2013 v1.03
+    NOCODEADDR
+    // PES2013 v1.04
+    {
+        0x123D1F3, 0x124041F, 0x12401A1
+    }
 };
 
 #define DATALEN 9
@@ -24,7 +37,7 @@ enum {
     LOD_REF_TABLE1, LOD_REF_TABLE2,
 };
 
-#define NODATAADDR {0,0,0,0,0,0,0,0,0}
+#define NODATAADDR {0,0,0,0,0,0,0,0,0},
 DWORD dataArray[][DATALEN] = {
     // PES2013 demo
     {
@@ -33,6 +46,21 @@ DWORD dataArray[][DATALEN] = {
         0x15F2BC8, 0x15F2C10,
         0x15F20B8, 0x15F20E0,
     },
+    // PES2013 v1.00
+    NODATAADDR
+    // PES2013 v1.01
+    NODATAADDR
+    // PES2013 v1.02
+    NODATAADDR
+    // PES2013 v1.03
+    NODATAADDR
+    // PES2013 v1.04
+    {
+        0x19E7A78, 0x19E7A7C, 0x19E7A80,
+        0x1546C68, 0x1547298,
+        0x16A41E8, 0x16A4230,
+        0x16A36D8, 0x16A3700,
+    }
 };
 
 DWORD code[CODELEN];
