@@ -28,18 +28,7 @@ typedef struct _PESINFO {
 } PESINFO;
 
 enum {
-    gvPES2011demo,   // PES2011 PC DEMO
-    gvPES2011,       // PES2011 PC 1.0 
-    gvPES2011v101,   // PES2011 PC 1.01
-    gvPES2011v102,   // PES2011 PC 1.02
-    gvPES2011v103,   // PES2011 PC 1.03
-    gvPES2012demo,   // PES2012 PC DEMO
-    gvPES2012demo2,  // PES2012 PC DEMO2
-    gvPES2012,       // PES2012 PC
-    gvPES2012v101,   // PES2012 PC 1.01
-    gvPES2012v102,   // PES2012 PC 1.02
-    gvPES2012v103,   // PES2012 PC 1.03
-    gvPES2012v106,   // PES2012 PC 1.06
+    gvPES2013demo,   // PES2013 demo
 };
 
 #endif

@@ -1,6 +1,6 @@
 # Introduction
 
-Kitserver 12 is a companion program for Pro Evolution Soccer 2012.
+Kitserver 13 is a companion program for Pro Evolution Soccer 2013.
 
 # How to build
 

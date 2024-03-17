@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.28.0)
-project (kitserver VERSION 12.2.3.0)
+project (kitserver VERSION 13.0.0.0)
 
-set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2012 Juce, Robbie")
+set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2012 Juce, Robbie, jminhano")
 
 # Thirdparty dependencies
 find_library(ZLIB_LIB zdll PATHS ${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.2.3/lib)
@@ -116,11 +116,11 @@ add_subdirectory(src/manager)
 add_subdirectory(src/config)
 add_subdirectory(src/afsio)
 add_subdirectory(src/afs2fs)
-add_subdirectory(src/kserv)
-add_subdirectory(src/fserv)
+#add_subdirectory(src/kserv)
+#add_subdirectory(src/fserv)
 add_subdirectory(src/lodmixer)
 add_subdirectory(src/speeder)
-add_subdirectory(src/sides)
+#add_subdirectory(src/sides)
 
 # Install dependencies
 install(

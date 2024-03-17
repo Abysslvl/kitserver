@@ -1,119 +1,14 @@
-Kitserver 12 HISTORY notes
+Kitserver HISTORY notes
 ==========================
 
 
-2012-05-05
+16-03-2024
 ----------
-v12.2.3
-- support for 1.06 exe
-
-
-2012-02-20
-----------
-v12.2.2
-- bug-fix release:
-* kserv: switching to all-virtual slots for GDB kits
-* afsio: more fixes for sound bins
-* kserv: proper names output in DumpSlotInfo; support for debug=2
-* fix for afsio: dt01.img sound files now work correctly
-* adding option disable teamlist output
-* adding option to disable playerlist output
-* fixing issue with imported faces
-
-
-2011-12-16
-----------
-v12.2.1
-- added support for 1.03 exe
-
-
-2011-12-09
-----------
-v12.2.0
-- faceserver (fserv.dll)
-
-
-2011-11-29
-----------
-v12.1.3
-- bug-fix for kserv:
-  fixed problem with kits getting mixed up 
-  among different teams
-- speed improvements for kit loading
-  (compressed buffers cached and re-used)
-
-
-2011-11-27
-----------
-v12.1.2
-- bug-fix for kserv:
-  sometimes euro-kits got mixed with regular kits
-  of another team.
-
-
-2011-11-23
-----------
-v12.1.1
-- bug-fixes for kserv:
-  * correct ids now reported in teamlist.txt
-  * falling back on regular kit, if a euro-kit is missing 
-- static linking with libpng for kserv
-
-
-2011-11-21
-----------
-v12.1.0
-- kserv module. Support for 1st/2nd kits
-  and also European kits for all teams
-
-
-2011-11-07
-----------
-v12.0.8
-- added support for 1.02 version of the game
-- fix for speeder 
-  (sometimes low values were not handled correctly)
-
-
-2011-11-04
-----------
-v12.0.7
-- added sides module
-- fix for lodmixer: Letter-Boxing is now correctly detected
-- fixes for speeder
-
-
-2011-09-29
-----------
-v12.0.5
-- added support for 1.01 exe of full game
-
-
-2011-09-26
-----------
-v12.0.3
+v13.0.0.0
+- new kitserver: support for PES2013: 1.00 (demo)
+- afs2fs: read & write bins from personalized path
+- speeder: adjust the game speed (increase/decrease)
 - lodmixer: player and referee LODs, 
             automatic AR-correction, 
             custom resolution selection,
             picture quality overwrite.
-
-
-2011-09-25
-----------
-v12.0.2
-- added support for full game EXE from "Reloaded"
-
-
-2011-09-14
-----------
-v12.0.1
-- added support for Demo2
-- speeder: adjust game speed (increase/decrease)
-
-
-2011-08-24
-----------
-v12.0.0
-- fist release of Kitserver 12
-- afs2fs module for first PES 2012 Demo
-
