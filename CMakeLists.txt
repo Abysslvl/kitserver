@@ -120,7 +120,7 @@ add_subdirectory(src/afs2fs)
 #add_subdirectory(src/fserv)
 add_subdirectory(src/lodmixer)
 add_subdirectory(src/speeder)
-#add_subdirectory(src/sides)
+add_subdirectory(src/sides)
 
 # Install dependencies
 install(
