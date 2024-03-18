@@ -47,12 +47,12 @@
 #define NUM_TEAMS_TOTAL 500
 
 #define NUM_SLOTS 256
-#define BIN_FONT_FIRST   1858
-#define BIN_FONT_LAST    2881
-#define BIN_NUMBER_FIRST 2882
-#define BIN_NUMBER_LAST  3905
-#define BIN_KIT_FIRST    5758
-#define BIN_KIT_LAST     6269
+#define BIN_FONT_FIRST   2158
+#define BIN_FONT_LAST    3181
+#define BIN_NUMBER_FIRST 3182
+#define BIN_NUMBER_LAST  4205
+#define BIN_KIT_FIRST    6358
+#define BIN_KIT_LAST     6869
 
 //#define XBIN_KIT_FIRST    10366
 //#define XBIN_KIT_LAST     10877
