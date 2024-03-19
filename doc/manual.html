@@ -54,7 +54,7 @@
 Version history: <a href="history.txt">history.txt</a><br />
 </div>
 <div>
-    May 16, 2024 - <b>Kitserver 13.0.0.0</b> -
+    May 16, 2024 - <b>Kitserver 13.4.0.0</b> -
     <span class="emph2">"jminhano version"</span> release
 </div>
 <p class="note">
@@ -76,18 +76,18 @@ If you are new to Kitserver, please make sure you read the
 
 <p>
 <table>
-    <tr><td><a href="#afs2fs">AFS2FS 13.0.0.0</a></td>
-        <th><b>afs2fs.dll</b></th>
+    <tr><th><b>afs2fs.dll</b></th>
         <td>Manage AFS (.img) game content using files and folders: much easier and quicker to install/remove patches, without the need modify *.img files.</td>
     </tr>
-    <tr><td><a href="#lodmixer">LOD Mixer 13.0.0.0</a></td>
-        <th><b>lodmixer.dll</b></th>
+    <tr><th><b>lodmixer.dll</b></th>
         <td>Misc visual tweaks, fine-tune LOD for players and referees.</span>
         </td>
     </tr>
-    <tr><td><a href="#speeder">Speeder 13.0.0.0</a></td>
-        <th><b>speeder.dll</b></th>
+    <tr><th><b>speeder.dll</b></th>
         <td>Increase or decrease gameplay speed.</td>
+    </tr>
+    <tr><th><b>sides.dll</b></th>
+        <td>Allow free side selection during matches.</td>
     </tr>
 </table>
 </p>
@@ -539,6 +539,30 @@ count.factor = 0.95
 </pre>
 </p>
 
+<a name="sides"><br /></a>
+<p><a class="backlink" href="#">Top</a></p>
+<h3>10. Sides module (sides.dll)</h3>
+
+<p>This module allows to change sides freely during non-exhibition matches.
+Useful, if you like to play tournaments with your friends, and want them to
+play for your opponents, instead of always playing against the CPU.</p>
+
+<p>By default, free selection of sides is disabled. To enable it, click
+the <b>Free sides selection</b> checkbox in configuration tool, and press
+[Save] button.<br />
+
+<img src="config-sides.png" />
+</p>
+<p>Or, as always, you can edit the config.txt file, "sides" section, 
+and set <b>free.select</b> option
+to 1, like shown here:
+
+<pre>
+[sides]
+free.select = 1
+</pre>
+</p>
+
 <!-- ad bottom -->
 
 <div style="height:20px"></div>
@@ -546,8 +570,7 @@ count.factor = 0.95
 <h2>Credits</h2>
 <p>
 Programming: <b>juce</b>, <b>Robbie</b>, <b>jminhano</b> 
-with contributions from <b>Stelios</b><br />
-Kit structure information for kserv module: <b>Chris00</b><br />
+with contributions from <b>pes5indie</b>, <b>Stelios</b><br />
 </p>
 
 <p>Kitserver license is BSD-style license that can be found here:

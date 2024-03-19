@@ -1,14 +1,17 @@
 Kitserver HISTORY notes
 ==========================
 
+19-03-2024
+----------
+v13.4.0.0
+- support: PES2013 demo, PES2013 v1.04
+- added sides: allow free side selection during matches.
 
 16-03-2024
 ----------
 v13.0.0.0
-- new kitserver: support for PES2013: 1.00 (demo)
-- afs2fs: read & write bins from personalized path
-- speeder: adjust the game speed (increase/decrease)
-- lodmixer: player and referee LODs, 
-            automatic AR-correction, 
-            custom resolution selection,
-            picture quality overwrite.
+- support: PES2013 demo
+- added afs2fs: read & write bins from personalized path
+- added speeder: adjust the game speed (increase/decrease)
+- added lodmixer: player and referee LODs, automatic AR-correction, 
+  custom resolution selection, picture quality overwrite.

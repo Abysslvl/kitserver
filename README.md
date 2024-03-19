@@ -1,6 +1,6 @@
 # Introduction
 
-Kitserver 13 is a companion program for Pro Evolution Soccer 2013.
+Kitserver is a companion program for Pro Evolution Soccer 2013.
 
 # How to build
 
@@ -9,6 +9,7 @@ should be able to use Visual Studio 2022 (with cmake integration supported).
 
 Open the project folder with VS Code / Visual Studio, then:
     
+    - set x86 build type
     - configure, build & install kitserver.
 
 Dont forget include "resources" content and "doc" folder in your releases.

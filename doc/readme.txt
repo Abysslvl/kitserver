@@ -1,20 +1,17 @@
-Kitserver 13.0.0.0
+Kitserver 13.4.0.0
 ==================
 
-Released: May 16, 2024
+Released: May 19, 2024
 
-
-Supports: PES2013 demo
+Supports: PES2013 demo, PES2013 v1.04
 Modules implemented:
 - afs2fs
 - speeder
 - lodmixer
-
-
+- sides
 
 Credits
 =======
 
-programming and game analysis: juce, Robbie, jminhano
-example faces and hairs: from ballback by Anat-Z
+programming and game analysis: juce, Robbie, jminhano, pes5indie
 
