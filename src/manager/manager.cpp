@@ -770,8 +770,7 @@ void UpdateInfo(void)
 		if (isRealGame(GetRealGameVersion(fileName)) != (i==0)) {
 			if (i==0) {
 				SendMessage(infoControl, WM_SETTEXT, (WPARAM)0, 
-					(LPARAM)L"You selected a settings executable instead a a game \
-executable.\0");
+					(LPARAM)L"You selected a not supported game version.\0");
 			} else {
                 wchar_t b[1024];
                 ZeroMemory(b,sizeof(b));

@@ -20,45 +20,45 @@ char* GAME_GUID[] = {
    // "PES2013 demo"
 	"1.00",
     // PES2013 v1.00
-    "ee6f5b82-32a5-47b4-b4ca-171b19b4e324",
+    "1.00",
     // PES2013 v1.01
-    "ee6f5b82-32a5-47b4-b4ca-171b19b4e324",
+    "1.01",
     // PES2013 v1.02
-    "ee6f5b82-32a5-47b4-b4ca-171b19b4e324",
+    "1.02",
     // PES2013 v1.03
-    "ee6f5b82-32a5-47b4-b4ca-171b19b4e324",
+    "1.03",
     // PES2013 v1.04
-    "ee6f5b82-32a5-47b4-b4ca-171b19b4e324"
+    "1.04"
 };
 
 DWORD GAME_GUID_OFFSETS[] = { 
     // PES2013 demo
     0x1072EA8,
     // PES2013 v1.00
-    0x10ECB60,
+    0x10F7538,
     // PES2013 v1.01
-    0x110D0F8,
+    0x1117AE0,
     // PES2013 v1.02
-    0x110C4F8,
+    0x1116EE0,
     // PES2013 v1.03
-    0x1107DA8,
+    0x11127A0,
     // PES2013 v1.04
-    0x1115710
+    0x1120108
 };
 
 DWORD GAME_GUID_MEMORY[] = { 
     // PES2013 demo
     0x14746A8,
     // PES2013 v1.00
-    0x14ee760,
+    0x14F9138,
     // PES2013 v1.01
-    0x150e4f8,
+    0x1518EE0,
     // PES2013 v1.02
-    0x150d4f8,
+    0x1517EE0,
     // PES2013 v1.03
-    0x15093A8,
+    0x1513DA0,
     // PES2013 v1.04
-    0x1516510
+    0x1520F08
 };
 
 BYTE BASE_GAME[] = {
@@ -74,11 +74,11 @@ bool ISGAME[] = {
     // PES2013 demo
     true,
     // PES2013 v1.00
-    true,
+    false,
     // PES2013 v1.01
-    true,
+    false,
     // PES2013 v1.02
-    true,
+    false,
     // PES2013 v1.03
     true,
     // PES2013 v1.04
