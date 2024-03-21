@@ -38,7 +38,19 @@ DWORD codeArray[][CODELEN] = {
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
+    {
+        0,
+        0, 0, 
+        0, 0, 
+        0, 0, 
+        0, 0,
+        0, 0,
+        0, 0,
+        0, 0,
+        0x12AE078,
+        0x510C9F, 0x12AEDB7,
+        0xCE3828,
+    },
     // PES2013 v1.04
     {
 		0,
@@ -49,9 +61,9 @@ DWORD codeArray[][CODELEN] = {
         0, 0,
         0, 0,
         0, 0,
-        0x12B1788, //0x12c8d58, 
-        0x511540, 0x12B24C7, //0x11a67fc, 0x12c9a5c,
-        0xCE66D8, //0xd3e3fb,
+        0x12B1788,
+        0x511540, 0x12B24C7,
+        0xCE66D8,
     }
 };
 
@@ -81,7 +93,12 @@ DWORD dataArray[][DATALEN] = {
     // PES2013 v1.02
     NODATAADDR
     // PES2013 v1.03
-    NODATAADDR
+    {
+        0, 0,
+        0, 0,
+        0, 0, 0,
+        123, 456, 789,
+    },
     // PES2013 v1.04
     {
         0, 0,

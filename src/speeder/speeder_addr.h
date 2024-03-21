@@ -1,6 +1,7 @@
 // ADDRESSES for speeder module
 BYTE allowedGames[] = {
     gvPES2013demo,
+    gvPES2013v103,
     gvPES2013v104
 };
 
@@ -22,7 +23,9 @@ DWORD codeArray[][CODELEN] = {
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
+    {
+        0x1138199,
+    },
     // PES2013 v1.04
     {
         0x113B7F9,

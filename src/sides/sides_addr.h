@@ -1,5 +1,6 @@
 // ADDRESSES for sides module
 BYTE allowedGames[] = {
+    gvPES2013v103,
     gvPES2013v104
 };
 
@@ -19,8 +20,10 @@ DWORD codeArray[][CODELEN] = {
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
-    // PES2012 v1.04
+    {
+        0x531C68, 0x531FFB, 0x53178A, 0x5316FE,
+    },
+    // PES2013 v1.04
     {
         0x52BC38, 0x52BFCB, 0x52B75A, 0x52B6CE,
     },

@@ -6,6 +6,10 @@ dll = afsio
 dll = afs2fs
 dll = lodmixer
 dll = speeder
+dll = sides
+
+[sides]
+free.select = 1
 
 [speeder]
 count.factor = 1.0

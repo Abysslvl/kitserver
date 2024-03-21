@@ -2,6 +2,7 @@
 BYTE allowedGames[] = 
 {
     gvPES2013demo,
+    gvPES2013v103,
     gvPES2013v104
 };
 
@@ -25,7 +26,9 @@ DWORD codeArray[][CODELEN] =
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
+    {
+        0x4302A3
+    },
     // PES2013 v1.04
     {
         0x430423
@@ -52,7 +55,9 @@ DWORD dataArray[][DATALEN] =
     // PES2013 v1.02
     NODATAADDR
     // PES2013 v1.03
-    NODATAADDR
+    {
+        0x1A40BC0, 0x144B8F0, 28, 30, 0,
+    },
     // PES2013 v1.04
     {
         0x1A4CF00, 0x144EA70, 28, 30, 0,
