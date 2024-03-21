@@ -178,7 +178,7 @@ HRESULT STDMETHODCALLTYPE initModule(IDirect3D9* self, UINT Adapter,
     HookCallPoint(code[C_AT_GET_SIZE1], afsioAtGetBinSizeCallPoint1, 6, 2);
     HookCallPoint(code[C_AT_GET_SIZE2], afsioAtGetBinSizeCallPoint2, 6, 2);
     HookCallPoint(code[C_AT_GET_BUFFERSIZE], 
-            afsioAtGetBufferSizeCallPoint, 6, 0);
+            afsioAtGetBufferSizeCallPoint, 6, 5);
     HookCallPoint(code[C_AFTER_CREATE_EVENT], 
             afsioAfterCreateEventCallPoint, 6, 3);
     HookCallPoint(code[C_AT_GET_IMG_SIZE1], afsioAtGetImgSize1CallPoint, 6, 0);
@@ -266,7 +266,7 @@ void afsioAtGetBufferSizeCallPoint()
         push esi
         push edi
         //mov edx, dword ptr ds:[ebx+0x10]  // original code
-        mov eax, dword ptr ds:[edx*4+ecx]
+        mov eax, dword ptr ds:[ecx+edx*4]
         mov ecx, dword ptr ds:[ebx+0x0c]
         push eax // params: org-size in bytes
         push edx // params: file id
