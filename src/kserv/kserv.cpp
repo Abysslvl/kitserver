@@ -785,7 +785,7 @@ void DumpSlotsInfo(TEAM_KIT_INFO* teamKitInfo, TEAM_NAME* teamNames)
     TRACE(L"sizeof(TEAM_KIT_INFO) = %08x", sizeof(TEAM_KIT_INFO));
 
     wstring filename(getPesInfo()->myDir);
-    filename += L"\\teamlist.txt";
+    filename += L"\\log\\teamlist.txt";
     //filename += L"\\uni.txt";
     FILE* f = _wfopen(filename.c_str(),L"wt");
     if (!f)

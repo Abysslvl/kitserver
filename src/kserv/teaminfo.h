@@ -51,7 +51,7 @@ typedef struct _KIT_INFO {
     BYTE iconType;
     BYTE unknow9;
     BYTE unknow10;
-} KIT_INFO; // size = 0x66
+} KIT_INFO; // size = 0x68
 
 const char* _kitInfoDefault =
     "\xff\xff\xff\xff\xff\xff"
@@ -69,7 +69,7 @@ typedef struct _TEAM_KIT_INFO
     KIT_INFO ga;
     KIT_INFO pa;
     KIT_INFO pb;
-} TEAM_KIT_INFO; // size = 0x66*3+4
+} TEAM_KIT_INFO; // size = 0x68*3+4
 
 typedef struct _TEAM_MATCH_DATA_INFO
 {

@@ -182,7 +182,7 @@ typedef struct _KIT_CHOICE
 } KIT_CHOICE;
 
 typedef struct _EURO_TEAM_STRUCT {
-    DWORD unknown1[0x10];
+    DWORD unknown1[0xB];
     TEAM_KIT_INFO* begin;
     TEAM_KIT_INFO* end;
     TEAM_KIT_INFO* end_again;

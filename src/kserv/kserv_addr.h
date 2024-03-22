@@ -59,13 +59,13 @@ DWORD dataArray[][DATALEN] = {
     {
         0, 0x19DBF14,
         0x29BF88, 0x396EB0,
-        0x0, 0x0,
+        0x1697AF8, 0x0,
     },
     // PES2013 v1.04
     {
         0, 0x19E826C,
         0x29BF88, 0x396EB0,
-        0x16A3E30, 0x19E8284,
+        0x16A3E30, 0x19E8288,
     }
 };
 
