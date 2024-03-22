@@ -4,7 +4,8 @@ Kitserver HISTORY notes
 19-03-2024
 ----------
 v13.4.0.0
-- support: PES2013 demo, PES2013 v1.04
+- support: PES2013 demo, PES2013 v1.03, PES2013 v1.04
+- added kserv: organize your kits into GDB, and assign each team its own kits.
 - added sides: allow free side selection during matches.
 
 16-03-2024

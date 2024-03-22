@@ -1,0 +1,5 @@
+# This file configures the uniforms of the teams
+# Format: <id>, "<uni-folder>"
+# Example: 31, "russia"
+
+101, "EPL\Arsenal"

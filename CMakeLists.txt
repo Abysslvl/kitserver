@@ -127,3 +127,5 @@ install(
     FILES ${THIRDPARTY_DIR}/zlib-1.2.3/bin/zlib1.dll ${THIRDPARTY_DIR}/libpng-1.2.8/bin/libpng13.dll
     DESTINATION ${INSTALL_DIR}
 )
+
+install(DIRECTORY DESTINATION ${INSTALL_DIR}/log)

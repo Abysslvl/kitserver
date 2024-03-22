@@ -1,0 +1,27 @@
+# PESJP Patch GDB kit
+
+collar = 0
+front.number.show = 0
+front.number.size = 15
+front.number.x = 14
+front.number.y = 14
+icon.type = 0
+main.color = B23062
+model = 11
+name.shape = type4
+name.show = 1
+name.size = 30
+name.y = 23
+number.size = 17
+number.y = 12
+second.color = B23062
+shorts.color = B23062
+shorts.number.location = left
+shorts.number.size = 17
+shorts.number.x = 12
+shorts.number.y = 9
+sleeve.patch.left.pos.long = 11
+sleeve.patch.left.pos.short = 11
+sleeve.patch.right.pos.long = 8
+sleeve.patch.right.pos.short = 8
+socks.color = B23062

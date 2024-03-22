@@ -345,6 +345,419 @@ afs-root), then the "conflicts" are resolved the same way as they are with BINs 
 <img src="names.png"/>
 </p>
 
+<a name="kserv"><br /></a>
+<p><a class="backlink" href="#">Top</a></p>
+<h3>6. Kserv Module (kserv.dll)</h3>
+
+<p>
+Kserv module is responsible for serving kits from the GDB ("<b>G</b>ame content <b>D</b>ata<b>B</b>ase") during the game. The main feature of it is that you are not limited to the slots that dt0c.img has for the kits, and you can assign a kit to any team. 
+</p>
+
+<p class="devnote" style="font-weight:normal">
+Kserv was historically the first module implemented in the original Kitserver program, made for PES3. That's where the <b>Kitserver</b> name originated from. Later, as more functionality were introduced as new modules, to avoid confusion, we changed the name of the module that serves kits to <b>kserv</b>, while Kitserver name now refers to the entire program.
+</p>
+
+<h5>6.1 GDB organization</h5>
+
+<p>
+The GDB contains a folder named <b>uni</b>, which is responsible for storing
+the team kits (uniforms). The single most important file inside <b>uni</b> is called <b>map.txt</b>.
+This file tells kitserver where to find the kits for particular team. 
+As you know, each team has a unique id - an integer in the range from 1 to 
+65535, although in practice there are only about 500 teams potentially 
+available in the game.
+</p>
+
+<div class="devnote">PLEASE NOTE that this year the mapping is slightly
+different: GDB now uses team <b>ID</b>s instead of team positions (indices)
+in EDIT.bin data, as was done in previous years. This may initially be
+somewhat confusing to people who got used to GDB using different numbers
+to refer to teams. But long term, i believe, this will actually simplify things
+a lot: team IDs are already used by other editing tools, so it makes
+sense for the GDB to refer to the teams by also using the same IDs.
+</div>
+
+<p>It is very easy to find out the ID for any team:<br />
+Just run the game once with kserv module installed, and it will create
+a file called <b>"teamlist.txt"</b> in log folder, which will 
+contain IDs for all teams in your game.</p>
+
+<p>
+For every team in the GDB, you must specify in the map.txt where the kits for this team are. Here is an example:
+
+<pre>
+# This config maps team number into folder name
+# Format: &lt;team-num&gt;,"&lt;folder name&gt;"
+# Example: 31,"Russia"
+
+31,"National\Russia"
+14, "National\Germany"
+101, "EPL\Arsenal"
+</pre>
+</p>
+
+<p>You can now also use hexadecimal notation to specify ids, if you
+prefer that to regular decimal numbers. Just make sure to use the "0x" 
+prefix to distinguish hex numbers from decimal ones:
+
+<pre>
+0x0065, "EPL\Arsenal"
+0x038c, "National\Classics\Argentina"
+</pre>
+
+<p>
+<div class="note">IMPORTANT: Double quotes are not required, but advised - 
+    just so that there is no ambiguity about folder name.</div>
+</p>
+
+<p>
+Please note that the sample GDB (provided with kitserver) is just one possible way of organizing the teams and 
+folders. It uses "EPL" folder to group all english teams, "National" - to group all national
+teams, and so for. You may find that you just prefer a flat list of folders - without these
+extra groups. In that case, just modify the <b>map.txt</b> file accordingly, and create
+the structure of folders that you prefer. That's the main advantage of having map.txt - the
+flexibility of kit organization.
+</p>
+
+<p>
+You can see from map.txt above that in order to find a kit for team #101, the kitserver needs to go to the 
+folder <b>GDB\uni\EPL\Arsenal</b>. This folder will contain all of the kits that are
+available to team #101. Inside it, you must create an individual folder for each kit. Like this:
+
+<img src="arsenal.png"/>
+
+For players, 1st kit must have a folder name <b>pa</b>, 2nd - <b>pb</b>. Extra kits can have 
+any folder names that start with letter "p". I found it useful to prefix all extra kits with 
+<b>px-</b>. For example, <b>px-redwhite</b>.--> For the goalkeepers, 1st kit must be in the folder
+<b>ga</b>, 2nd - in the <b>gb</b>. Extra kits can have any folder names that start with letter "g".
+</p>
+
+<div class="note">Please note, that currently (as of <b>kserv 13.4.0</b>)
+    extra kits for players and goalkeepers are not yet supported. I may
+    implement them in the future releases.</div>
+
+<!--
+<div class="note">IMPORTANT: Folder name acts as a kind of ID for kitserver, which puts the 
+additional restriction on all those folder names: they cannot contain spaces, and preferably
+they should be relatively short, and in English,French or other language withing Latin1 
+(iso8859-1) character set. Typically, if you want to make sure kitserver can properly
+find/read the folder, just use latin characters, digits, underscore, and the dash (minus sign).
+</div>
+-->
+
+<img src="kserv-exhib.png" />
+
+<h5>6.2 European kits</h5>
+
+<p>A team may also have an alternative set of kits, which are only used in 
+European club competitions, such as UEFA Champions League and UEFA Europa 
+League. Put those kits into folders named: <b>euro-ga</b>, <b>euro-gb</b>, 
+<b>euro-pa</b>, and <b>euro-pb</b> respectively. These kits are optional, however. If a team folder does not have euro-* kits, then the regular ones 
+(ga, gb, pa, pb) will be used instead in European matches.
+</p>
+
+<img src="kserv-cl.png" />
+
+<p>
+Now let's move on inside one of the kit folders. Take <b>pa</b>, for example.
+
+<img src="pa.png" />
+
+See the table below for explanation of each file:
+</p>
+
+<div class="note">Images must be in PNG format: 8-bit paletted or 4-bit paletted (those may be used with fonts/numbers). So the filename must have 
+a ".png" extension.</b></div>
+
+<p>
+<table>
+    <tr><th>Reserved file name</th><th>Meaning</th><th>Format</th></tr>
+    <tr><td><nobr>kit.png</nobr></td><td>Kit texture</td>
+        <td>1024x512 8-bit paletted image in PNG format.
+    </td></tr>
+    <tr><td><nobr>font.png</nobr></td><td>Font texture: used for names on the back of the shirt</td>
+        <td>256x64 8-bit or 4-bit paletted image in PNG format.</td></tr>
+    <tr><td><nobr>numbers.png</nobr></td><td>Numbers texture: used for numbers on the back and the front of the shirt, and also on shorts</td>
+        <td>512x256 8-bit or 4-bit paletted image in PNG format.</td></tr>
+    <tr><td>config.txt</td><td>Kit attribute configuration file (see next section for more details)</td>
+        <td>text file (in UTF-8 encoding)</td></tr>
+</table>
+</p>
+
+<p class="devnote">
+IMPORTANT NOTE TO KITMAKERS:<br />
+BMP kits are no longer supported, please use PNG format instead.
+</p>
+
+<h5>6.3. config.txt</h5>
+
+<p>
+This is the attribute configuration file.
+As before, it is just a plain text file - you can use Notepad or any other text editor to
+view or modify it. For each folder, you should have a <b>config.txt</b> file in it. Here is an example config.txt from <b>pa</b> folder:
+</p>
+
+<pre>
+# Attribute configuration file auto-generated by GDB Manager
+
+collar = 1
+front.number.show = 0
+main.color = BA001D
+second.color = D7D7D7
+socks.color = D7D7D7
+icon.type = 4
+model = 10
+name.shape = type3
+name.show = 1
+name.size = 28
+name.y = 20
+number.size = 20
+number.y = 7
+shorts.color = D7D7D7
+shorts.number.location = left
+shorts.number.size = 20
+shorts.number.x = 12
+shorts.number.y = 8
+sleeve.patch.left.pos.long = 12
+sleeve.patch.left.pos.short = 12
+sleeve.patch.right.pos.long = 7
+sleeve.patch.right.pos.short = 7
+</pre>
+
+<p><br />
+The summary table of all the supported attributes:</p>
+
+<table>
+    <tr><th>Attribute name</th><th>Meaning</th><th>Format</th><th>Example</th></tr>
+    <tr>
+        <td><b>collar</b></td>
+        <td>Collar-type (note that different models will have different interpretations of the collar value)</td>
+        <td>1/2/3/4</td>
+        <td><nobr>collar = 1</nobr></td>
+    </tr>
+	<tr>
+        <td><b>description</b></td>
+        <td>Any notes about the kit. This text will be displayed on
+            kit selection screen. Useful when there are
+            several kits that look nearly identical,
+            but you want to know which one is currently selected.</td>
+        <td>any text in double quotes</td>
+        <td><nobr>description = "Home red"</nobr></td>
+    </tr>
+    <tr>
+        <td><b>front.number.show</b></td>
+        <td>Specifies if front number should be shown on the shirt: 1-show, 0-hide.(This only applies to national teams.)
+        </td>
+        <td>0|1</td>
+        <td><nobr>front.number.show = 1</nobr></td>
+    </tr>
+    <tr>
+        <td><b>front.number.size</b></td>
+        <td>How big the front number on the shirt is.</td>
+        <td>decimal number. Range: 1-30</td>
+        <td><nobr>front.number.size = 8</nobr></td>
+    </tr>
+    <tr>
+        <td><b>front.number.x</b></td>
+        <td>Horizontal position of the front number on the shirt.</td>
+        <td>decimal number. Range: 0(left)-30(right)</td>
+        <td><nobr>front.number.x = 26</nobr></td>
+    </tr>
+    <tr>
+        <td><b>front.number.y</b></td>
+        <td>Vertical position of the front number on the shirt.</td>
+        <td>decimal number. Range: 0(low)-30(high)</td>
+        <td><nobr>front.number.y = 18</nobr></td>
+    </tr>
+	<tr>
+        <td><b>main.color</b><br />
+            <span style="color:#888"><b>( radar.color )</b></span></td>
+        <td>This attribute specifies the main color of the shirt. It is also used as the color of the players on radar screen. It also influences the kit that is selected by default. (The old name "radar.color" is also supported for backwards compatibility)</td>
+        <td>color, written in hexadecimal format RRGGBB (red,green,blue)</td>
+        <td><nobr>main.color = A70623</nobr><br />
+            <nobr><span style="color:#888">radar.color = A70623</span></nobr></td>
+    </tr>
+	<tr>
+        <td><b>second.color</b></td>
+        <td>This attribute specifies the "second" color of the shirt. It is used in Formation screens (Game Plan), when painting the player icons, together
+            with the main color.</td>
+        <td>color, written in hexadecimal format RRGGBB (red,green,blue)</td>
+        <td><nobr>second.color = D7D7D7</nobr></td>
+    </tr>
+	<tr>
+        <td><b>socks.color</b></td>
+        <td>This attribute specifies the color of the socks.</td>
+        <td>color, written in hexadecimal format RRGGBB (red,green,blue)</td>
+        <td><nobr>socks.color = D7D7D7</nobr></td>
+    </tr>
+	<tr>
+        <td><b>icon.type</b></td>
+        <td>Type of the player icon used in Formation screen (Game Plan).
+            This affects how the the icon is drawn: one solid color, 
+            striped, or some other pattern of two colors.</td>
+        <td>decimal integer (range: 0-16)</td>
+        <td><nobr>icon.type = 1</nobr></td>
+    </tr>
+    <tr>
+        <td><b>model</b></td>
+        <td>identifier for 3D-model of the shirt</td>
+        <td>decimal integer</td>
+        <td><nobr>model = 45</nobr></td>
+    </tr>
+    <tr>
+        <td><b>name.show</b></td>
+        <td>Specifies if player name should be shown on the shirt: 1-show, 0-hide.</td>
+        <td>0|1</td>
+        <td><nobr>name.show = 1</nobr></td>
+    </tr>
+    <tr>
+        <td><b>name.shape</b></td>
+        <td>Indicates whether the name should be curved or straight. The values
+have the same meaning as in Edit Mode: type1 - straight, type2 - slightly curved,
+type3 - more curved, type4 - even more curved.</td>
+        <td>type1|type2|type3|type4</td>
+        <td><nobr>name.shape = type1</nobr></td>
+    </tr>
+    <tr>
+        <td><b>name.size</b></td>
+        <td>Size of the player's name on the shirt.</td>
+        <td>decimal number. Range: 1-35</td>
+        <td><nobr>name.size = 28</nobr></td>
+    </tr>
+    <tr>
+        <td><b>name.y</b></td>
+        <td>Vertical position of the player's name.</td>
+        <td>decimal number. Range: 0(low)-30(high)</td>
+        <td><nobr>name.y = 24</nobr></td>
+    </tr>
+    <tr>
+        <td><b>number.size</b></td>
+        <td>Size of the number on the back.</td>
+        <td>decimal number. Range: 1-35</td>
+        <td><nobr>number.size = 22</nobr></td>
+    </tr>
+    <tr>
+        <td><b>number.y</b></td>
+        <td>Vertical position of the number on the back.</td>
+        <td>decimal number. Range: 0(low)-30(high)</td>
+        <td><nobr>number.y = 11</nobr></td>
+    </tr>
+	<tr>
+        <td><b>shorts.color</b></td>
+        <td>This attribute specifies the color of the player/gk shorts. The color
+         of shorts is used by the game to determine correct color of the underpants
+         for those players who wear them, and have them set to match the shorts
+         color.</td>
+        <td>color, written in hexadecimal format RRGGBB (red,green,blue)</td>
+        <td><nobr>shorts.color = A70623</nobr></td>
+    </tr>
+    <tr>
+        <td><b>shorts.number.location</b></td>
+        <td>Where on the shorts the number should be placed. 
+            ("off" means the number will not be displayed at all.)
+        </td>
+        <td>left|right|off</td>
+        <td><nobr>shorts.number.location = left</nobr></td>
+    </tr>
+    <tr>
+        <td><b>shorts.number.size</b></td>
+        <td>Size of the number on shorts.</td>
+        <td>decimal number. Range: 1-35</td>
+        <td><nobr>shorts.number.size = 14</nobr></td>
+    </tr>
+    <tr>
+        <td><b>shorts.number.x</b></td>
+        <td>Horizontal position of the number on shorts.</td>
+        <td>decimal number. Range: 0(left)-30(right)</td>
+        <td><nobr>shorts.number.x = 14</nobr></td>
+    </tr>
+    <tr>
+        <td><b>shorts.number.y</b></td>
+        <td>Vertical position of the number on shorts.</td>
+        <td>decimal number. Range: 0(low)-30(high)</td>
+        <td><nobr>shorts.number.y = 6</nobr></td>
+    </tr>
+    <tr>
+        <td><b>sleeve.patch.left.pos.long</b></td>
+        <td>Position of the patch on left long sleeve.</td>
+        <td>decimal number. Range: 0-13</td>
+        <td><nobr>sleeve.patch.left.pos.long = 12</nobr></td>
+    </tr>
+    <tr>
+        <td><b>sleeve.patch.left.pos.short</b></td>
+        <td>Position of the patch on left short sleeve.</td>
+        <td>decimal number. Range: 0-13</td>
+        <td><nobr>sleeve.patch.left.pos.short = 12</nobr></td>
+    </tr>
+    <tr>
+        <td><b>sleeve.patch.right.pos.long</b></td>
+        <td>Position of the patch on right long sleeve.</td>
+        <td>decimal number. Range: 0-13</td>
+        <td><nobr>sleeve.patch.right.pos.long = 7</nobr></td>
+    </tr>
+    <tr>
+        <td><b>sleeve.patch.right.pos.short</b></td>
+        <td>Position of the patch on right short sleeve.</td>
+        <td>decimal number. Range: 0-13</td>
+        <td><nobr>sleeve.patch.right.pos.short = 7</nobr></td>
+    </tr>
+</table>
+
+<p class="devnote">
+By default, the usage of "description" attribute is enabled, but if you want, you can disable it. To do that, edit the main configuration file, and add the following option to the [kserv] section:
+</p>
+
+<pre>
+[kserv]
+use.description = 0
+</pre>
+
+<h5>6.4. "Techfit" models</h5>
+
+<p>In their DLC updates, KONAMI included new models which use different kit
+textures - the one where two variants of a kit coexist in the same picture:
+a tight fit, and a normal one.</p>
+
+<p>Only certain models support those textures, and as of November 2011, they
+are: 34,35,36,37,38,44,55,56,57,65,69,100. Kitserver supports those
+without any additional configuration. However, if another update is released
+and more models like that are added, it is now possible to specify them
+in the [kserv] section of config.txt. You need to list <b>all</b> of them 
+like this:
+</p>
+
+<pre>
+[kserv]
+techfit.model = 34
+techfit.model = 35
+techfit.model = 36
+techfit.model = 37
+techfit.model = 38
+techfit.model = 44
+...
+</pre>
+
+<h5>6.5. "Tight" models</h5>
+
+<p>Another type of special model is Puma Tight-fit.
+It allows to make any normal kit become tight-fitting kit (good examples of
+that are kits worn by African teams)</p>
+
+<p>As of November 2011, models 5, 6, 7, 8, 22, 83, 89 and 90 are like 
+that, and Kitserver supports those without any additional configuration. 
+However, if another update is released and more models like that are added, 
+it is possible to specify them in the [kserv] section of config.txt. 
+You need to list <b>all</b> of them like this:
+</p>
+
+<pre>
+[kserv]
+tight.model = 5
+tight.model = 6
+tight.model = 7
+...
+</pre>
+
 <a name="lodmixer"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
 <h3>8. LOD Mixer (lodmixer.dll)</h3>
@@ -569,8 +982,8 @@ free.select = 1
 
 <h2>Credits</h2>
 <p>
-Programming: <b>juce</b>, <b>Robbie</b>, <b>jminhano</b> 
-with contributions from <b>pes5indie</b>, <b>Stelios</b><br />
+Programming and game analysis: <b>juce</b>, <b>Robbie</b>, <b>jminhano</b><br />
+with support from <b>pes5indie</b>, <b>MGPES</b><br />
 </p>
 
 <p>Kitserver license is BSD-style license that can be found here:

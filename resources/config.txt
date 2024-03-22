@@ -3,6 +3,7 @@ img.dir = "example-root"
 
 [kload]
 dll = afsio
+dll = kserv
 dll = afs2fs
 dll = lodmixer
 dll = speeder
