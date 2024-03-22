@@ -1,5 +1,6 @@
 // ADDRESSES for kserv.cpp
 BYTE allowedGames[] = {
+    gvPES2013v103,
     gvPES2013v104
 };
 
@@ -22,7 +23,12 @@ DWORD codeArray[][CODELEN] = {
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
+    {
+        0x0, 0x0,
+        0x11D332E, 0x11D3DE0, 0x12B93B0,
+        0, 0,
+        0, 0,
+    },
     // PES2013 v1.04 
     {
         0x0, 0x0,
@@ -50,7 +56,11 @@ DWORD dataArray[][DATALEN] = {
     // PES2013 v1.02
     NODATAADDR
     // PES2013 v1.03
-    NODATAADDR
+    {
+        0, 0x19DBF14,
+        0x29BF88, 0x396EB0,
+        0x0, 0x0,
+    },
     // PES2013 v1.04
     {
         0, 0x19E826C,

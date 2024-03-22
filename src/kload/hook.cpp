@@ -2041,7 +2041,7 @@ KEXPORT void addReadNamesCallback(READ_NAMES_CALLBACK callback)
 void hookAfterReadNamesCallPoint()
 {
     __asm {
-        lea edx, dword ptr ds:[esi+0x42f2a0] // replaced code
+        mov [esi+0x13e],eax // replaced code
         pushfd 
         push ebp
         push eax

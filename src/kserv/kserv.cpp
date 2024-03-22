@@ -113,12 +113,12 @@
 #define EXPANSION_IMG   0x0f   // dt0f.img
 
 #define NUM_SLOTS_DT0F 128
-#define DT0F_BIN_FONT_FIRST   398
-#define DT0F_BIN_FONT_LAST    909
-#define DT0F_BIN_NUMBER_FIRST 910
-#define DT0F_BIN_NUMBER_LAST  1421
-#define DT0F_BIN_KIT_FIRST    2117
-#define DT0F_BIN_KIT_LAST     2372
+#define DT0F_BIN_FONT_FIRST   412
+#define DT0F_BIN_FONT_LAST    923
+#define DT0F_BIN_NUMBER_FIRST 924
+#define DT0F_BIN_NUMBER_LAST  1435
+#define DT0F_BIN_KIT_FIRST    2741
+#define DT0F_BIN_KIT_LAST     2996
 
 #define EURO_ATTR_IMG   0x04   // dt04.img
 #define EURO_ATTR_EXPANSION_IMG 0x0f // dt0f.img
@@ -423,6 +423,7 @@ void InitIterators();
 void ResetKit(SWITCH_KIT& sw);
 
 void kservReadNumSlotsCallPoint1();
+void kservReadNumSlotsCallPoint2();
 void kservReadNumSlotsCallPoint4();
 KEXPORT DWORD kservReadNumSlots(DWORD slot);
 
@@ -524,8 +525,8 @@ HRESULT STDMETHODCALLTYPE initModule(IDirect3D9* self, UINT Adapter,
     addReadNamesCallback(kservAfterReadNames);
     
     HookCallPoint(code[C_READ_NUM_SLOTS1], kservReadNumSlotsCallPoint1, 6, 1);
-    HookCallPoint(code[C_READ_NUM_SLOTS2], kservReadNumSlotsCallPoint1, 6, 1);
-    HookCallPoint(code[C_READ_NUM_SLOTS3], kservReadNumSlotsCallPoint4, 6, 0);
+    HookCallPoint(code[C_READ_NUM_SLOTS2], kservReadNumSlotsCallPoint2, 6, 1);
+    HookCallPoint(code[C_READ_NUM_SLOTS3], kservReadNumSlotsCallPoint4, 6, 7);
 
     HookCallPoint(code[C_READ_UNIFORM_PICK], kservReadUniformPickCallPoint, 
             6, 1);
@@ -2470,8 +2471,7 @@ void kservReadNumSlotsCallPoint1()
         push ecx
         push edx
         push edi
-        shr eax,2
-        push eax // slot
+        push edi
         call kservReadNumSlots
         add esp,4 // pop parameters
         mov esi, eax
@@ -2486,25 +2486,51 @@ void kservReadNumSlotsCallPoint1()
     }
 }
 
-void kservReadNumSlotsCallPoint4()
+void kservReadNumSlotsCallPoint2()
 {
     __asm {
         pushfd 
         push ebp
+        push eax
+        push ebx
+        push esi
+        push edx
+        push edi
+        push edx
+        call kservReadNumSlots
+        add esp,4 // pop parameters
+        mov ecx, eax
+        pop edi
+        pop edx
+        pop esi
+        pop ebx
+        pop eax
+        pop ebp
+        popfd
+        retn
+    }
+}
+
+void kservReadNumSlotsCallPoint4()
+{
+    __asm {
+        mov eax, dword ptr ss:[ebp+0xcc]
+        pushfd 
+        push ebp
+        push eax
         push ebx
         push ecx
         push edx
-        push esi
         push edi
-        sar edx,1
-        push edx // slot
+        push eax
         call kservReadNumSlots
         add esp,4 // pop parameters
+        mov esi,eax
         pop edi
-        pop esi
         pop edx
         pop ecx
         pop ebx
+        pop eax
         pop ebp
         popfd
         retn
