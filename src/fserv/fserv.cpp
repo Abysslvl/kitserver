@@ -42,11 +42,11 @@
 #define FIRST_BAL_ID 0x010000a0
 #define NUM_BAL_PLAYERS 20
 
-#define MAX_FACE_ID 1700
-#define MAX_HAIR_ID 1700
+#define MAX_FACE_ID 2130
+#define MAX_HAIR_ID 2130
 #define MANEKEN_ID 948
 
-#define REPLAY_SIG "ks12"
+#define REPLAY_SIG "ks13"
 
 // VARIABLES
 HINSTANCE hInst = NULL;
@@ -195,7 +195,7 @@ EXTERN_C BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 			return false;
 		}
 
-        CHECK_KLOAD(MAKELONG(2,12));
+        CHECK_KLOAD(MAKELONG(KITSERVER_VERSION_MINOR, KITSERVER_VERSION_MAJOR));
 
 		copyAdresses();
 		hookFunction(hk_D3D_CreateDevice, initModule);
@@ -465,7 +465,7 @@ void fservAfterReadNames()
     LOG(L"fservAfterReadNames:: CALLED.");
     fservApplyChanges();
 }
-    
+
 void fservApplyChanges(PLAYER_INFO* players)
 {
     if (!players) {
@@ -909,7 +909,7 @@ void fservAtGetFaceBinCallPoint()
         pop ebx
         pop ebp
         popfd
-        mov ecx,0x6a4
+        mov ecx,0x7d0
         retn
 fsface: pop edi
         pop esi
@@ -918,11 +918,12 @@ fsface: pop edi
         pop ebx
         pop ebp
         popfd
-        add eax,0x0c000000
-        push eax
-        mov eax,_gotFaceBin
-        mov [esp+4],eax
-        pop eax
+        movzx ecx,ax
+        add ecx,0x0C000000
+        push ecx
+        mov ecx,_gotFaceBin
+        mov [esp+4],ecx
+        pop ecx
         retn
     }
 }
@@ -950,7 +951,7 @@ void fservAtGetHairBinCallPoint()
         pop eax
         pop ebp
         popfd
-        mov edi,0x6a4
+        mov edi,0x7d0
         retn
 fshair: pop edi
         pop edx
@@ -959,8 +960,8 @@ fshair: pop edi
         pop eax
         pop ebp
         popfd
-        add esi,0x0c000000
-        mov edi,[esp+4] 
+        add esi,0x0C000000
+        mov edi,[esp+4]
         push eax
         mov eax,_gotHairBin
         mov [esp+4],eax

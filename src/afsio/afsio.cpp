@@ -125,7 +125,7 @@ EXTERN_C BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 			return true;
 		}
 
-        CHECK_KLOAD(MAKELONG(0,10));
+        CHECK_KLOAD(MAKELONG(KITSERVER_VERSION_MINOR, KITSERVER_VERSION_MAJOR));
 
 		copyAdresses();
 		hookFunction(hk_D3D_CreateDevice, initModule);

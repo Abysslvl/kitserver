@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.28.0)
-project (kitserver VERSION 13.4.0.0)
+project (kitserver VERSION 13.4.0)
 
 set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2024 Juce, Robbie, jminhano")
 
@@ -117,7 +117,7 @@ add_subdirectory(src/config)
 add_subdirectory(src/afsio)
 add_subdirectory(src/afs2fs)
 add_subdirectory(src/kserv)
-#add_subdirectory(src/fserv)
+add_subdirectory(src/fserv)
 add_subdirectory(src/lodmixer)
 add_subdirectory(src/speeder)
 add_subdirectory(src/sides)
