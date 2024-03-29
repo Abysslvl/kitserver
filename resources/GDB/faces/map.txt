@@ -1,0 +1,5 @@
+# This file configures the faces-hairs of the players
+# Format: <id>, "<face-bin>", "<hair-bin>"
+# Example: 7511, "Messi\face.bin", "Messi\hair.bin"
+
+39216, "EPL\Chelsea\Moses\face.bin", "EPL\Chelsea\Moses\hair.bin"

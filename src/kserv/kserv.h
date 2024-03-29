@@ -2,7 +2,7 @@
 #include <kconf.h>
 
 #define MODID 100
-#define NAMELONG L"KSERV " KITSERVER_VERSION_STRING
+#define NAMELONG L"Kit Server " KITSERVER_VERSION_STRING
 #define NAMESHORT L"KSERV"
 #define DEFAULT_DEBUG 0
 

@@ -1,17 +1,13 @@
 Kitserver HISTORY notes
 ==========================
 
-19-03-2024
+30-03-2024
 ----------
 v13.4.0.0
 - support: PES2013 demo, PES2013 v1.03, PES2013 v1.04
-- added kserv: organize your kits into GDB, and assign each team its own kits.
+- added fserv: assign face/hair (from GDB) to any player you want.
+- added kserv: assign kits (from GDB) to any team you want.
 - added sides: allow free side selection during matches.
-
-16-03-2024
-----------
-v13.0.0.0
-- support: PES2013 demo
 - added afs2fs: read & write bins from personalized path
 - added speeder: adjust the game speed (increase/decrease)
 - added lodmixer: player and referee LODs, automatic AR-correction, 

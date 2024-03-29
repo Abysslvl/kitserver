@@ -142,7 +142,7 @@ int GetNumItems(wstring& folder)
                         NULL, 0, szPath))) 
         {
             PathAppend(szPath, L"KONAMI");
-            PathAppend(szPath, L"Pro Evolution Soccer 2012");
+            PathAppend(szPath, L"Pro Evolution Soccer 2013");
             PathAppend(szPath, L"download");
 
         }

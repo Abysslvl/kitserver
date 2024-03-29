@@ -54,11 +54,11 @@
 Version history: <a href="history.txt">history.txt</a><br />
 </div>
 <div>
-    May 16, 2024 - <b>Kitserver 13.4.0.0</b> -
+    March 30, 2024 - <b>Kitserver 13.4.0.0</b> -
     <span class="emph2">"jminhano version"</span> release
 </div>
 <p class="note">
-Usually, the most up-to-date version of this documentation, and the translations to many languages, are located here: <a href="http://kitserver.ath.cx/docs/">http://kitserver.ath.cx/docs/</a>. Documentation for Kitservers 5-8 and Kitserver 2010/11 can also be found there.
+The most up-to-date version of this documentation, and the source code of kitserver, are located here: <a href="https://github.com/jminhano/kitserver">https://github.com/jminhano/kitserver</a>.
 </p>
 <p>
 Kitserver is an add-on program for Pro Evolution Soccer 2013. It is a loader and manager for various modules, where
@@ -78,6 +78,12 @@ If you are new to Kitserver, please make sure you read the
 <table>
     <tr><th><b>afs2fs.dll</b></th>
         <td>Manage AFS (.img) game content using files and folders: much easier and quicker to install/remove patches, without the need modify *.img files.</td>
+    </tr>
+    <tr><th><b>kserv.dll</b></th>
+        <td>Organize your kits into GDB, and assign each team its own kits.</td>
+    </tr>
+    <tr><th><b>fserv.dll</b></th>
+        <td>Assign special face/hair (from GDB) to any player you want.</td>
     </tr>
     <tr><th><b>lodmixer.dll</b></th>
         <td>Misc visual tweaks, fine-tune LOD for players and referees.</span>
@@ -112,7 +118,7 @@ to avoid them and save yourself plenty of time and hair.
 
 <h6>2.1.2. Unpacking and configuring Kitserver</h6>
 
-<p>Unpack the archive (kitserver-x.x.x.x.zip) into some temporary folder.
+<p>Unpack the archive (kitserver-x.x.x.rar) into some temporary folder.
 You will see a folder called <b>kitserver</b>. Copy this entire folder
 into your game main folder, so it looks like the picture below. 
 That is it, you are done.
@@ -179,12 +185,19 @@ Here is an example of what can be in config.txt:
 
 <pre>
 [afs2fs]
-img.dir = "c:\mypesfiles\root1"
+img.dir = "example-root"
 
 [kload]
+dll = afsio
+dll = kserv
+dll = fserv
 dll = afs2fs
-dll = speeder
 dll = lodmixer
+dll = speeder
+dll = sides
+
+[sides]
+free.select = 1
 
 [speeder]
 count.factor = 1.0
@@ -307,12 +320,10 @@ Here's an example of such songs.txt file:
 </p>
 
 <pre>
-# Song names map
+# Songs map (encoding must be UTF-8)
 # Format: &lt;binId&gt;, "&lt;title&gt;", "&lt;artist&gt;" 
-# Note that double quotes are required.
 
-22, "I'm mad about you", "Sting"
-23, "Вне зоны доступа", "Город 312"
+19, "Rhinestone Eyes", "Gorillaz"
 </pre>
 
 <p class="devnote" style="font-weight:normal">IMPORTANT: as with all other map-files and config files that Kitserver uses, 
@@ -326,13 +337,11 @@ Similarly with balls, if you are replacing ball BINs, you probably want to
 adjust their names too. One easy way to do that is to use a <b>balls.txt</b> map-file, which should be put into afs-root folder:
 
 <pre>
-# Ball names map
-# Format: &lt;ball-number&gt;, "&lt;name&gt;"
-# Note that double quotes are required.
-# (Ball numbers go from 1 to 16)
+# Balls map (encoding must be UTF-8)
+# Format: &lt;ball-index&gt;, "&lt;name&gt;"
+# (Ball numbers go from 1 to 32)
 
-8, "Nike-ball Blue"
-9, "Мячик плохонький"
+10, "Kitserver Adidas SpeedCell"
 </pre>
 
 <p>It is worth noting that each afs-root folder can have its own songs.txt
@@ -386,13 +395,12 @@ contain IDs for all teams in your game.</p>
 For every team in the GDB, you must specify in the map.txt where the kits for this team are. Here is an example:
 
 <pre>
-# This config maps team number into folder name
-# Format: &lt;team-num&gt;,"&lt;folder name&gt;"
-# Example: 31,"Russia"
+# This file configures the uniforms of the teams
+# Format: &lt;id&gt;, "&lt;uni-folder&gt;"
+# Example: 31, "russia"
 
-31,"National\Russia"
-14, "National\Germany"
 101, "EPL\Arsenal"
+31, "National\Russia"
 </pre>
 </p>
 
@@ -402,7 +410,6 @@ prefix to distinguish hex numbers from decimal ones:
 
 <pre>
 0x0065, "EPL\Arsenal"
-0x038c, "National\Classics\Argentina"
 </pre>
 
 <p>
@@ -758,6 +765,68 @@ tight.model = 7
 ...
 </pre>
 
+<a name="fserv"><br /></a>
+<p><a class="backlink" href="#">Top</a></p>
+<h3>7. Faceserver (fserv.dll)</h3>
+
+<p>
+Faceserver makes it possible to load as many faces and hair from the GDB as 
+you want. So, you can assign each player a unique face/hair combination, if 
+you want to, including custom created players. Faceserver makes use of unique 
+ids, which are assigned to each player, and it creates "virtual" face and 
+hair slots, that only exist during run-time. 
+</p>
+
+<img src="fserv.png"/>
+
+<h5>7.1. How to find out ID for a player</h5>
+<p>
+If you have faceserver enabled (which it is by default), just start the game, and then in the <b>log</b> folder, there should appear a text file called <span style="color:#060"><b>playerlist.txt</b></span>. It will contain the IDs for all the players that you have in your game, sorted alphabetically for easy searching, including the user-defined players that were created from scratch in Edit mode (those typically take IDs starting from 1048576).
+</p>
+
+<p>The only player ID not available in playlist.txt file is the ID for you BAL (Be-A-Legend) player. However, it looks like that ID is always: 16777376.
+</p>
+
+<h5>7.2. How to configure</h5>
+<p>
+Faceserver uses a map file (<b>GDB/faces/map.txt</b>), similar in format to Kserv: you specify player's unique ID, followed by a filename for his face, and optionally followed by a filename for his hair:<br />
+</p>
+<p class="devnote">{id}, {face-bin}, {hair-bin}</p>
+
+<p>
+The filenames are relative to <b>GDB/faces</b> folder, but inside that you're free to organize them whichever way you want: either one flat directory, or a folder hierarchy. The only important thing is that you correctly specify the paths in the map.txt. The double-quotes around filenames are optional.
+</p>
+
+<p>
+Here are some examples of entries in map.txt:
+
+<pre>
+# Example 1: into a separate folder:
+8637, "Anyukov\face.bin", "Anyukov\hair.bin"
+</pre>
+
+<pre>
+# Example 2: direct assignment:
+8637, "Anyukov_face.bin", "Anyukov_hair.bin"
+</pre>
+
+<pre>
+# Example 3: face only:
+8637, "Anyukov\face.bin"
+</pre>
+
+<pre>
+# Example 3: hair only (notice 2 commas!):
+8637, , "Anyukov\hair.bin"
+</pre>
+</p>
+
+<h5>7.3. Network play</h5>
+<p>
+Faceserver should work fine in all online modes, although i have not 
+done a lot of testing with it.
+</p>
+
 <a name="lodmixer"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
 <h3>8. LOD Mixer (lodmixer.dll)</h3>
@@ -984,6 +1053,7 @@ free.select = 1
 <p>
 Programming and game analysis: <b>juce</b>, <b>Robbie</b>, <b>jminhano</b><br />
 with support from <b>pes5indie</b>, <b>MGPES</b><br />
+and special thanks to <b>maticiro</b><br />
 </p>
 
 <p>Kitserver license is BSD-style license that can be found here:

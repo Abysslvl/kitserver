@@ -310,21 +310,19 @@ void InitMaps()
         {
             wstring& line = it->second;
             int comma = line.find(',');
-            wstring path(line.substr(0, comma));
-            string_strip(path);
 
-            wstring face;
+            wstring face(line.substr(0,comma));
+            string_strip(face);
+            if (!face.empty())
+                string_strip_quotes(face);
+
             wstring hair;
-            if(!path.empty())
+            if (comma != string::npos) // hair can be omitted
             {
-                string_strip_quotes(path);
-                face = path + L"\\face.bin";
-                hair = path + L"\\hair.bin";
-            }
-            else
-            {
-                face = NULLSTRING;
-                hair = NULLSTRING;
+                hair = line.substr(comma+1);
+                string_strip(hair);
+                if (!hair.empty())
+                    string_strip_quotes(hair);
             }
             //LOG(L"{%d}:",it->first);
             //LOG(L"{%s}/{%s}",face.c_str(),hair.c_str());
@@ -597,7 +595,7 @@ void fservApplyChanges(PLAYER_INFO* players)
     {
         // write out playerlist.txt
         wstring plist(getPesInfo()->myDir);
-        plist += L"\\playerlist.txt";
+        plist += L"\\log\\playerlist.txt";
         FILE* f = _wfopen(plist.c_str(),L"wt");
         if (f)
         {
