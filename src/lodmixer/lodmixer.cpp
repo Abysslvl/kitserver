@@ -73,6 +73,8 @@ EXTERN_C BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 			return false;
 		}
 
+        CHECK_KLOAD(MAKELONG(0, KITSERVER_VERSION_MAJOR));
+
 		copyAdresses();
 		hookFunction(hk_D3D_Create, initLodMixer);
 	}

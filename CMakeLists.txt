@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.28.0)
-project (kitserver VERSION 13.4.0)
+project (kitserver VERSION 13.4.0.0)
 
 set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2024 Juce, Robbie, jminhano")
 
