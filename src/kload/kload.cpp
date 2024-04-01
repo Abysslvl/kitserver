@@ -290,25 +290,19 @@ KEXPORT const wchar_t* getTransl(char* section, char* key) {
 
 void kloadLoadDlls(char* pName, const wchar_t* pValue, DWORD a)
 {	
-	wchar_t dllName[BUFLEN];
-	ZeroMemory(dllName, WBUFLEN);
-
+	wchar_t dllName[MAX_PATH];
 	wcscpy(dllName, pValue);
 	// check for C:, D: etc and things like %windir%
-	if (dllName[1] != ':' && dllName[0] != '%')
-		{
-			// it's a relative path. Therefore do it relative to myDir
-			wchar_t temp[BUFLEN];
-			ZeroMemory(temp, WBUFLEN);
-			wcscpy(temp, g_pesinfo.myDir); 
-			wcscat(temp, dllName);
-			
-			ZeroMemory(dllName, WBUFLEN);
-			wcscpy(dllName, temp);
-		}
+	if (dllName[1] == ':' || dllName[0] == '%')
+		return;
+
+	wchar_t dllDir[MAX_PATH];
+	wcscpy(dllDir, g_pesinfo.myDir);
+	wcscat(dllDir, L"modules\\");
+	wcscat(dllDir, dllName);
 	
 	LOG(L"Loading module \"%s\" ...", dllName);
-	if (LoadLibrary(dllName) == NULL)
+	if (LoadLibrary(dllDir) == NULL)
 		LOG(L"... ERROR!");
 	else
 		LOG(L"... OK!");

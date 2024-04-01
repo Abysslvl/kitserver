@@ -430,15 +430,16 @@ void afsConfigImgDir(char* pName, const wchar_t* pValue, DWORD a)
         // absolute root
         wstring root(s);
         _config._roots.push_back(root);
-        LOG(L"Config: img.dir: {%s}", root.c_str());
+        LOG(L"Config: afs.root: {%s}", root.c_str());
     }
     else
     {
         // relative root
         wstring root(getPesInfo()->myDir);
+        root += L"afs-root\\";
         root += s;
         _config._roots.push_back(root);
-        LOG(L"Config: img.dir: {%s}", root.c_str());
+        LOG(L"Config: afs.root: {%s}", root.c_str());
     }
 }
 
@@ -449,7 +450,7 @@ HRESULT STDMETHODCALLTYPE initModule(IDirect3D9* self, UINT Adapter,
 
     getConfig("afs2fs", "debug", DT_DWORD, 1, afsConfig);
     getConfig("afs2fs", "filename.length", DT_DWORD, 2, afsConfig);
-    getConfig("afs2fs", "img.dir", DT_STRING, C_ALL, 
+    getConfig("afs2fs", "afs.root", DT_STRING, C_ALL, 
             (PROCESSCONFIG)afsConfigImgDir);
 
 	unhookFunction(hk_D3D_CreateDevice, initModule);

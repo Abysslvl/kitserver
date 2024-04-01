@@ -5,10 +5,9 @@ Kitserver HISTORY notes
 ----------
 v13.4.0.0
 - support: PES2013 demo, PES2013 v1.03, PES2013 v1.04
-- added fserv: assign face/hair (from GDB) to any player you want.
-- added kserv: assign kits (from GDB) to any team you want.
-- added sides: allow free side selection during matches.
-- added afs2fs: read & write bins from personalized path
-- added speeder: adjust the game speed (increase/decrease)
-- added lodmixer: player and referee LODs, automatic AR-correction, 
-  custom resolution selection, picture quality overwrite.
+- added afs2fs: manage AFS (.img) game content using custom files and folders.
+- added kserv: assign your kits (from GDB) to any team you want.
+- added fserv: assign your face/hair (from GDB) to any player you want.
+- added lodmixer: misc visual tweaks, fine-tune LOD for players and referees.
+- added speeder: adjust the game speed (increase/decrease).
+- added sides: allows to freely select sides during non-exhibition matches.

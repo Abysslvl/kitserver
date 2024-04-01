@@ -1,5 +1,5 @@
 [afs2fs]
-img.dir = "example-root"
+afs.root = "example"
 
 [kload]
 dll = afsio

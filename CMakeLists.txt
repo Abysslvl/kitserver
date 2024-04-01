@@ -1,7 +1,5 @@
 cmake_minimum_required (VERSION 3.28.0)
-project (kitserver VERSION 13.4.0.0)
-
-set(KITSERVER_COPYRIGHT "Copyright (c) 2005-2024 Juce, Robbie, jminhano")
+project (kitserver VERSION 13.4.0.5)
 
 # Thirdparty dependencies
 find_library(ZLIB_LIB zdll PATHS ${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.2.3/lib)
@@ -73,7 +71,7 @@ message("Kitserver compile definitions: ${KITSERVER_COMPILE_DEFINITIONS}")
 # Kitserver directories
 set(SHARED_DIR ${CMAKE_SOURCE_DIR}/src/shared)
 set(CONFIGURE_DIR ${CMAKE_BINARY_DIR}/src/kconf)
-set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/install)
+set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/out/kitserver)
 set(THIRDPARTY_DIR ${CMAKE_SOURCE_DIR}/thirdparty)
 
 message("Kitserver directories:

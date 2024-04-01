@@ -7,73 +7,47 @@
 #include "log.h"
 #include "utf8.h"
 
-static HANDLE mylog = INVALID_HANDLE_VALUE;
+FILE* mylog;
 
-//////////////////////////////////////////////////
-// FUNCTIONS
-//////////////////////////////////////////////////
-
-
-// Creates log file
+// Create log file
 void OpenLog(const wchar_t* logName)
 {
-    mylog = CreateFile(
-            logName,                          // file to create 
-            GENERIC_WRITE,                    // open for writing 
-            FILE_SHARE_READ | FILE_SHARE_DELETE,   // do not share 
-            NULL,                             // default security 
-            CREATE_ALWAYS,                    // overwrite existing 
-            FILE_ATTRIBUTE_NORMAL,            // normal file 
-            NULL);                            // no attr. template 
-
-    if (mylog == INVALID_HANDLE_VALUE) return;
-    DWORD wbytes;
-    BYTE buf[3] = {0xef, 0xbb, 0xbf};		// UTF8
-    WriteFile(mylog, (LPVOID)buf, 3,(LPDWORD)&wbytes, NULL);
+    if (mylog == nullptr)
+        mylog = _wfopen(logName, L"w");
 }
 
-// Closes log file
+// Close log file
 void CloseLog()
 {
-	if (mylog != INVALID_HANDLE_VALUE) CloseHandle(mylog);
-	mylog = INVALID_HANDLE_VALUE;
+	if (mylog != nullptr)
+		fclose(mylog);
 }
 
 // Simple logger
 void _Log(KMOD *caller, const wchar_t *msg)
 {
-	if (!caller || mylog == INVALID_HANDLE_VALUE) return;
-	/*#ifdef MYDLL_RELEASE_BUILD
-	if (caller->debug < 1) return;
-	#endif*/
+	if (!caller || mylog == nullptr)
+		return;
 	
 	DWORD wbytes;
-	wchar_t buf[BUFLEN];
-	ZeroMemory(buf, WBUFLEN);
-	
-	if (mylog != INVALID_HANDLE_VALUE) 
-	{
-		swprintf(buf, L"{%s} %s\r\n", caller->nameShort, msg);
-		BYTE* utf8Buf = Utf8::unicodeToUtf8(buf);
-		WriteFile(
-                mylog,(LPVOID)utf8Buf, 
-                Utf8::byteLength(utf8Buf),(LPDWORD)&wbytes, NULL);
-		Utf8::free(utf8Buf);
-	}
+	wchar_t buf[MAX_PATH];
+	swprintf(buf, L"{%s} %s\r\n", caller->nameShort, msg);
+	BYTE* encode = Utf8::unicodeToUtf8(buf);
+	fwrite(encode, strlen((char*)encode), 1, mylog);
+	fflush(mylog);
+	Utf8::free(encode);
 }
 
 // Universal logger
 KEXPORT void _LogX(KMOD *caller, const wchar_t *format, ...)
 {
-    if (mylog == INVALID_HANDLE_VALUE)
+    if (mylog == nullptr)
         return;
 
-    wchar_t buffer[BUFLEN];
-    memset(buffer,0,sizeof(buffer));
-
+    wchar_t buffer[MAX_PATH];
     va_list params;
     va_start(params, format);
-    _vsnwprintf(buffer, 512, format, params);
+    vswprintf(buffer, MAX_PATH, format, params);
     va_end(params);
 
     _Log(caller,buffer);
