@@ -300,7 +300,8 @@ void kloadLoadDlls(char* pName, const wchar_t* pValue, DWORD a)
 			// it's a relative path. Therefore do it relative to myDir
 			wchar_t temp[BUFLEN];
 			ZeroMemory(temp, WBUFLEN);
-			wcscpy(temp, g_pesinfo.myDir); 
+			wcscpy(temp, g_pesinfo.myDir);
+			wcscat(temp, L"\\modules\\"); 
 			wcscat(temp, dllName);
 			
 			ZeroMemory(dllName, WBUFLEN);
