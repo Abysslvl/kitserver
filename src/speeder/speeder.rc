@@ -20,9 +20,9 @@ BEGIN
 		BEGIN
 			VALUE "FileDescription", "Speeder Module\0"
 			VALUE "FileVersion", KITSERVER_VERSION_STRING
-			VALUE "LegalCopyright", KITSERVER_COPYRIGHT
+			VALUE "LegalCopyright", "Copyright (c) 2005-2024 Juce, jminhano"
 			VALUE "Comments", "Speeder Module.\r\n\
-Allows to slow the gameplay down.\0"
+Adjust the game speed (increase/decrease).\0"
 		END
 	END
 	BLOCK "VarFileInfo"

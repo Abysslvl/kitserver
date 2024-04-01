@@ -22,8 +22,8 @@ BEGIN
 		BEGIN
 			VALUE "FileDescription", "KitServer Configuration Tool\0"
 			VALUE "FileVersion", KITSERVER_VERSION_STRING
-			VALUE "LegalCopyright", KITSERVER_COPYRIGHT
-			VALUE "Comments", "Configures KitServer\0"
+			VALUE "LegalCopyright", "Copyright (c) 2005-2024 Juce, Robbie, jminhano"
+			VALUE "Comments", "KitServer Configuration Tool.\0"
 		END
 	END
 	BLOCK "VarFileInfo"

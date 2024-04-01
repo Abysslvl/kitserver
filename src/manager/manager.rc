@@ -22,8 +22,9 @@ BEGIN
 		BEGIN
 			VALUE "FileDescription", "Kitserver EXE Manager\0"
 			VALUE "FileVersion", KITSERVER_VERSION_STRING
-			VALUE "LegalCopyright", KITSERVER_COPYRIGHT
-			VALUE "Comments", "Manages Kitserver attachment to PES2013\0"
+			VALUE "LegalCopyright", "Copyright (c) 2005-2024 Juce, Robbie, jminhano"
+			VALUE "Comments", "Kitserver EXE Manager.\r\n\
+Manages Kitserver attachment to PES2013.\0"
 		END
 	END
 	BLOCK "VarFileInfo"

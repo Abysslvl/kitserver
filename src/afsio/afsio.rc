@@ -18,10 +18,10 @@ BEGIN
 	BEGIN
 		BLOCK "040904b0"
 		BEGIN
-			VALUE "FileDescription", "afsio module\0"
+			VALUE "FileDescription", "AFSIO Module\0"
 			VALUE "FileVersion", KITSERVER_VERSION_STRING
-			VALUE "LegalCopyright", KITSERVER_COPYRIGHT
-			VALUE "Comments", "afsio module.\r\n\
+			VALUE "LegalCopyright", "Copyright (c) 2005-2024 Juce, Robbie, jminhano"
+			VALUE "Comments", "AFSIO Module.\r\n\
 This module provides the base functionality for intercepting\
 BIN-loading from AFS (*.img) files. It's intended to be used\
 by other modules that need to replace AFS bins dynamically.\0"

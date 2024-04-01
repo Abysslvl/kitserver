@@ -4,9 +4,9 @@
 #include <kconf.h>
 
 #ifdef MYDLL_RELEASE_BUILD
-#define LODCFG_WINDOW_TITLE "Kitserver Configuration"
+#define LODCFG_WINDOW_TITLE "Kitserver Configuration Tool"
 #else
-#define LODCFG_WINDOW_TITLE "Kitserver Configuration (debug build)"
+#define LODCFG_WINDOW_TITLE "Kitserver Configuration Tool(debug build)"
 #endif
 #define CREDITS "Program info: " KITSERVER_VERSION_STRING " by Juce."
 

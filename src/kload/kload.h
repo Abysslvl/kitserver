@@ -6,7 +6,7 @@
 
 #ifdef _COMPILING_KLOAD
 #define MODID 0
-#define NAMELONG L"Module Loader " KITSERVER_VERSION_STRING
+#define NAMELONG L"Kitserver Loader " KITSERVER_VERSION_STRING
 #define NAMESHORT L"KLOAD"
 
 #define DEFAULT_DEBUG 0
