@@ -1,12 +1,57 @@
 [afs2fs]
 img.dir = "example-root"
 
+[camera]
+mid.range.range = 700
+mid.range.height = 0.45
+mid.range.zoom.near = 19.05
+mid.range.zoom.far = 8495
+mid.range.camera.angle = 12004
+mid.range.angle.modulator = 1.2
+long.range = 1000
+long.zoom.near = 19.05
+long.height = 0.52
+long.zoom.far = 11183
+long.camera.angle = 11262
+long.angle.modulator = 1.3
+wide.range = 1100
+wide.zoom.near = 16.05
+wide.height = 0.46
+wide.zoom.far = 18016
+wide.camera.angle = 11456
+wide.angle.modulator = 1.4
+pitch.side.range = 1100
+pitch.side.zoom.near = 14.21
+pitch.side.height = 0.3
+pitch.side.zoom.far = 19000
+pitch.side.camera.angle = 11456
+pitch.side.angle.modulator = 1
+blimp.range = 1000
+blimp.zoom.near = 14.9
+blimp.height = 0.49
+blimp.zoom.far = 29000
+blimp.camera.angle = 8000
+blimp.angle.modulator = 1
+live.broadcast.range = 258
+live.broadcast.zoom.near = 14.41
+live.broadcast.height = 0.23
+live.broadcast.zoom.far = 15640
+live.broadcast.camera.angle = 12728
+live.broadcast.angle.modulator = 0.41
+vertical.wide.range = 800
+vertical.wide.zoom.near = 40.05
+vertical.wide.height = 0.3
+vertical.wide.zoom.far = 4100
+vertical.wide.camera.angle = 7300
+vertical.wide.angle.modulator = 1
+
 [kload]
 dll = afsio
 dll = kserv
 dll = fserv
 dll = afs2fs
 dll = lodmixer
+dll = camera
 dll = speeder
 dll = sides
 
