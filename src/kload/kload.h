@@ -25,7 +25,7 @@ enum {DT_NORMAL, DT_STRING, DT_DWORD, DT_INT, DT_DOUBLE, DT_FLOAT};
 KEXPORT PESINFO* getPesInfo();
 #define GETPESINFO
 KEXPORT void RegisterKModule(KMOD *k);
-KEXPORT void getConfig(char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback);
+KEXPORT void getConfig(const char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback);
 KEXPORT const wchar_t* getTransl(char* section, char* key);
 
 KEXPORT bool MasterHookFunction(DWORD call_site, DWORD numArgs, void* target);

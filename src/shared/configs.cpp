@@ -165,7 +165,7 @@ bool writeConfig(const wchar_t* cfgFile)
 	return true;
 }
 
-void _getConfig(char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback) {
+void _getConfig(const char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback) {
 
 	if (!section || !name || !callback) return;
 		

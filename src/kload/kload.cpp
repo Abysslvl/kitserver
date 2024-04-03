@@ -279,7 +279,7 @@ KEXPORT void RegisterKModule(KMOD *k)
 	return;
 }
 
-KEXPORT void getConfig(char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback) {
+KEXPORT void getConfig(const char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback) {
 	_getConfig(section, name, dataType, a, callback);
 	return;
 }

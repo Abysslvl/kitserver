@@ -110,7 +110,7 @@ KEXPORT DWORD HookIndirectCall(DWORD addr, void* func);
 KEXPORT void HookIndirectCall2(DWORD addr, void* func);
 KEXPORT void HookCallPoint(DWORD addr, void* func, int codeShift, int numNops, bool addRetn=false);
 KEXPORT DWORD GetTargetAddress(DWORD addr);
-KEXPORT void Patch(void* addr, void* value, int type, int size);
+KEXPORT void Patch(void* addr, const void* src, size_t len);
 KEXPORT void PatchCode(DWORD addr, void* patch, size_t len);
 
 typedef void (*OVERLAY_EVENT_CALLBACK)(bool overlayOn, bool isExhibitionMode, int delta, DWORD menuMode);

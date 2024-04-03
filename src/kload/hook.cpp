@@ -1124,28 +1124,19 @@ DWORD STDMETHODCALLTYPE hookedEditCopyPlayerName(DWORD p1, DWORD p2)
 	return res;
 }
 
-void Patch(void* addr, void* value, int type, int size)
+void Patch(void* addr, const void* src, size_t len)
 {
+    if (len == 0)
+        return;
+
     DWORD protection;
-    VirtualProtect(addr, size, PAGE_EXECUTE_READWRITE, &protection);
-
-    switch(type)
-    {
-        case DT_DWORD:
-            *(DWORD*) addr = *(DWORD*) value;
-            break;
-        case DT_FLOAT:
-            *(float*) addr = *(float*) value;
-            break;
-        case DT_DOUBLE:
-            *(double*) addr = *(double*) value;
-            break;
-        default:
-            break;
-    }
-
+    // Changue protection for able read and write in memory
+    VirtualProtect(addr, len, PAGE_EXECUTE_READWRITE, &protection);
+    // Copy the source into the memory address
+    memcpy(addr, src, len);
+    // Restore the old protection
     DWORD temp;
-    VirtualProtect(addr, size, protection, &temp);
+    VirtualProtect(addr, len, protection, &temp);
 }
 
 KEXPORT void PatchCode(DWORD addr, void* patch, size_t len)
