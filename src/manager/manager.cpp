@@ -25,6 +25,7 @@
 #include "configs.h"
 #include "lang.h"
 #include "manage.h"
+#include "vstyles.h"
 #define lang(s) _getTransl("manager",s)
 
 HWND hWnd = NULL;

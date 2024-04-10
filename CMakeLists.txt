@@ -108,6 +108,10 @@ set(IMAGEUTIL_OBJ
     ${SHARED_DIR}/imageutil.cpp ${SHARED_DIR}/imageutil.h
 )
 
+set(VISUAL_STYLES
+    ${SHARED_DIR}/vstyles.h
+)
+
 # Kitserver modules
 add_subdirectory(src/kload)
 add_subdirectory(src/manager)

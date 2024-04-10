@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME} WIN32
 	lodcfgui.cpp lodcfgui.h
 	config.rc
 	${CONFIGS_OBJ}
+	${VISUAL_STYLES}
 )
 
 # Set global compile options & definitions

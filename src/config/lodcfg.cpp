@@ -16,6 +16,7 @@
 #include "imageutil.h"
 #include "configs.h"
 #include "lodmixer.h"
+#include "vstyles.h"
 
 #define UNDEFINED -1
 #define WM_APP_EXECHANGE WM_APP+1

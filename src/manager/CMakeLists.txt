@@ -7,6 +7,7 @@ add_executable(${PROJECT_NAME} WIN32
 	${IMAGEUTIL_OBJ}
 	${DETECT_OBJ}
 	${LANG_OBJ}
+	${VISUAL_STYLES}
 )
 
 # Set global compile options & definitions
