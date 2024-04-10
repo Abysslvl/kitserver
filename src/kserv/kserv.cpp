@@ -27,7 +27,7 @@
 #define  __inout_opt
 #endif
 
-#define lang(s) getTransl("kserv",s)
+//#define lang(s) getTransl("kserv",s)
 
 #include <map>
 #include <hash_map>

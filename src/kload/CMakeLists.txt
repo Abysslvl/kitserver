@@ -12,7 +12,6 @@ add_library(${PROJECT_NAME} SHARED
 	${CONFIGS_OBJ}
 	${IMAGEUTIL_OBJ}
 	${DETECT_OBJ}
-	${LANG_OBJ}
 )
 
 # Include kitserver & kload directories for modules
@@ -40,5 +39,3 @@ endfunction()
 
 register_module(${PROJECT_NAME})
 
-# Necessary to kload & manager works
-install(FILES ${SHARED_DIR}/lang_eng.txt DESTINATION ${INSTALL_DIR})

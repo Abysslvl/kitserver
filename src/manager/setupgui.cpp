@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include "setupgui.h"
 
-extern const wchar_t* _getTransl(char* section, char* key);
-#define lang(s) _getTransl("manager",s)
+//extern const wchar_t* _getTransl(char* section, char* key);
+//#define lang(s) _getTransl("manager",s)
 
 HWND g_exeListControl;              // displays list of executable files
 HWND g_exeInfoControl;              // displays info about current executable file
@@ -52,7 +52,7 @@ bool BuildControls(HWND parent)
 	x += spacer; y += spacer;
 
 	HWND topLabel = CreateWindowEx(
-			xstyle, L"Static", lang("lGameExecutable"), style,
+			xstyle, L"Static", managerLabels[lGameExecutable], style,
 			x, y+4, statW, statH, 
 			parent, NULL, NULL, NULL);
 
@@ -73,14 +73,14 @@ bool BuildControls(HWND parent)
 
 
 	HWND infoLabel = CreateWindowEx(
-			xstyle, L"Static", lang("lCurrentState"), style,
+			xstyle, L"Static", managerLabels[lCurrentState], style,
 			x, y+4, statW, statH, 
 			parent, NULL, NULL, NULL);
 
 	x += statW + spacer;
 
 	g_exeInfoControl = CreateWindowEx(
-			xstyle, L"Static", lang("InformationUnavailable"), style,
+			xstyle, L"Static", managerLabels[InformationUnavailable], style,
 			x, y+4, boxW, boxH + 10,
 			parent, NULL, NULL, NULL);
 
@@ -132,7 +132,7 @@ bool BuildControls(HWND parent)
 	x = WIN_WIDTH - spacer*2 - butW;
 
 	g_removeButtonControl = CreateWindowEx(
-			xstyle, L"Button", lang("bRemove"), style | WS_TABSTOP,
+			xstyle, L"Button", managerLabels[bRemove], style | WS_TABSTOP,
 			x, y, butW, butH,
 			parent, NULL, NULL, NULL);
 
@@ -140,7 +140,7 @@ bool BuildControls(HWND parent)
 	x -= butW + spacer;
 
 	g_installButtonControl = CreateWindowEx(
-			xstyle, L"Button", lang("bInstall"), style | WS_TABSTOP,
+			xstyle, L"Button", managerLabels[bInstall], style | WS_TABSTOP,
 			x, y, butW, butH,
 			parent, NULL, NULL, NULL);
 

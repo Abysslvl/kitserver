@@ -13,10 +13,10 @@
 #include "kload.h"
 #include "kload_addr.h"
 #include "dllinit.h"
-#include "lang.h"
+//#include "lang.h"
 #include "hooklib.h"
 #include "hook.h"
-#define lang(s) getTransl("kload",s)
+//#define lang(s) getTransl("kload",s)
 
 // GLOBALS
 CRITICAL_SECTION g_cs;
@@ -158,7 +158,7 @@ EXTERN_C BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 
 		_getConfig("kload", "gdb.dir", DT_STRING, 1, kloadConfig);
 		_getConfig("kload", "debug", DT_DWORD, 2, kloadConfig);
-		_getConfig("kload", "lang", DT_STRING, 3, kloadConfig);
+		//_getConfig("kload", "lang", DT_STRING, 3, kloadConfig);
         _getConfig("kload", "noshade", DT_DWORD, 4, kloadConfig);
 		_getConfig("kload", "dll", DT_STRING, C_ALL, (PROCESSCONFIG)kloadLoadDlls);
         SetCurrentDirectory(currDir);
@@ -176,10 +176,10 @@ EXTERN_C BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 			wcscpy(g_pesinfo.gdbDir, temp);
 		}
 		
-		wchar_t langFile[BUFLEN];
+		/*wchar_t langFile[BUFLEN];
 		ZeroMemory(langFile, WBUFLEN);
 		swprintf(langFile, L"%s.\\lang_%s.txt", g_pesinfo.myDir, g_pesinfo.lang);
-		readLangFile(langFile, hInstance);
+		readLangFile(langFile, hInstance);*/
 		
 		/*#ifdef MYDLL_RELEASE_BUILD
 		//if debugging shouldn't have been enabled, delete log file
@@ -284,9 +284,9 @@ KEXPORT void getConfig(char* section, char* name, BYTE dataType, DWORD a, PROCES
 	return;
 }
 
-KEXPORT const wchar_t* getTransl(char* section, char* key) {
+/*KEXPORT const wchar_t* getTransl(char* section, char* key) {
 	return _getTransl(section, key);
-}
+}*/
 
 void kloadLoadDlls(char* pName, const wchar_t* pValue, DWORD a)
 {	
@@ -325,9 +325,9 @@ void kloadConfig(char* pName, const void* pValue, DWORD a)
 		case 2: // debug
 			k_kload.debug = *(DWORD*)pValue;
 			break;
-		case 3:	// lang
+		/*case 3:	// lang
 			wcscpy(g_pesinfo.lang, (wchar_t*)pValue);
-			break;
+			break;*/
         case 4: // noshade
             _noshade = *(DWORD*)pValue == 1;
             break;

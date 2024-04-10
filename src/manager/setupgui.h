@@ -23,4 +23,50 @@ extern HWND g_statusTextControl;           // displays status messages
 // functions
 bool BuildControls(HWND parent);
 
+enum
+{
+    MsgTitle,
+    HelpTextTitle,
+    ManualPath,
+    lGameExecutable,
+    lCurrentState,
+    InformationUnavailable,
+    NoActionRequired,
+    NoAction,
+    bInstall,
+    bRemove,
+    ParamSettings,
+    ParamGame,
+    Err_UnknownExe,
+    Err_WrongExeType,
+    HelpText,
+};
+
+constexpr const wchar_t* managerLabels[] =
+{
+    L"Kitserver Setup Message",
+    L"Kitserver short help",
+    L".\\docs\\manual.html",
+    L"Game executable:",
+    L"Current state:",
+    L"Information unavailable",
+    L"No action required",
+    L"- no action -",
+    L"Attach",
+    L"Detach",
+    L"settings",
+    L"game",
+    L"======== WRONG FILE! =========\n"
+    L"File % s is an unknown EXE - file."
+    L"Therefore,"
+    L"Kitserver will NOT be attached to it.",
+    L"======== WRONG FILE! =========\n"
+    L"File %s is a %s EXE instead of a %s EXE-file."
+    L"Therefore,"
+    L"Kitserver will NOT be attached to it.",
+    L"For information on what Kitserver is, what you can do with"
+    L"it and how you install / use it correctly, please read the manual.html"
+    L"which is located in the in the \"docs\" subfolder",
+};
+
 #endif

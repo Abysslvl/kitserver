@@ -100,10 +100,6 @@ set(DETECT_OBJ
     ${SHARED_DIR}/detect.cpp ${SHARED_DIR}/detect.h
 )
 
-set(LANG_OBJ
-    ${SHARED_DIR}/lang.cpp ${SHARED_DIR}/lang.h
-)
-
 set(IMAGEUTIL_OBJ
     ${SHARED_DIR}/imageutil.cpp ${SHARED_DIR}/imageutil.h
 )

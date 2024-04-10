@@ -27,7 +27,7 @@ using namespace stdext;
 #include "utf8.h"
 #include "names.h"
 
-#define lang(s) getTransl("afs2fs",s)
+//#define lang(s) getTransl("afs2fs",s)
 
 #include <wchar.h>
 

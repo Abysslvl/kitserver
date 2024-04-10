@@ -15,7 +15,7 @@
 #include "configs.hpp"
 #include "utf8.h"
 
-#define lang(s) getTransl("sides",s)
+//#define lang(s) getTransl("sides",s)
 
 //#include <map>
 //#include <list>

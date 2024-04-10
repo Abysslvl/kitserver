@@ -23,10 +23,10 @@
 #include "manager.h"
 #include "detect.h"
 #include "configs.h"
-#include "lang.h"
+//#include "lang.h"
 #include "manage.h"
 #include "vstyles.h"
-#define lang(s) _getTransl("manager",s)
+//#define lang(s) _getTransl("manager",s)
 
 HWND hWnd = NULL;
 bool g_noFiles = false;
@@ -36,7 +36,7 @@ wchar_t patchExeName[BUFLEN]={0};
 wchar_t patchTitle[BUFLEN]={0};
 char installDllPath[BUFLEN]={0};
 char installDllSetPath[BUFLEN]={0};
-wchar_t setupLang[64] = L"eng\0";
+//wchar_t setupLang[64] = L"eng\0";
 
 // array of LoadLibrary address on diff. OS
 DWORD LoadLibraryAddr[] = {
@@ -75,13 +75,13 @@ void MyMessageBox2(wchar_t* fmt, wchar_t* value)
 #endif
 }
 
-void setupConfig(char* pName, const void* pValue, DWORD a) {
+/*void setupConfig(char* pName, const void* pValue, DWORD a) {
 	switch (a) {
 		case 1:	// lang
 			wcscpy(setupLang, (wchar_t*)pValue);
 			break;
 	}
-}
+}*/
 
 /**
  * Installs the kitserver DLL.
@@ -127,7 +127,7 @@ bool InstallKserv(wstring& gfile, wstring& sfile, wstring& outs, const bool quie
 
 		wchar_t* fileName = (wchar_t*)((i==0)?gfile.c_str():sfile.c_str());
         if (wcslen(fileName)==0) {
-            wcscat(outmsg, lang("NoActionRequired"));
+            wcscat(outmsg, managerLabels[NoActionRequired]);
             continue;
         }
 	
@@ -137,7 +137,7 @@ bool InstallKserv(wstring& gfile, wstring& sfile, wstring& outs, const bool quie
 			// show message box with error msg
 			wchar_t buf[BUFLEN];
 			ZeroMemory(buf, WBUFLEN);
-			swprintf(buf, lang("Err_UnknownExe"), fileName);
+			swprintf(buf, managerLabels[Err_UnknownExe], fileName);
 	
 			wcscat(outmsg, buf);
             result = false;
@@ -147,11 +147,11 @@ bool InstallKserv(wstring& gfile, wstring& sfile, wstring& outs, const bool quie
 		if (isRealGame(GetRealGameVersion(fileName)) != (i==0)) {
 			wchar_t buf[BUFLEN];
 			ZeroMemory(buf, WBUFLEN);
-			swprintf(buf, lang("Err_WrongExeType"), 
+			swprintf(buf, managerLabels[Err_WrongExeType], 
                     fileName, 
-                    (i==0)?lang("ParamSettings"):lang("ParamGame"),
-                    (i==0)?lang("ParamGame"):lang("ParamSettings")
-                    );
+                    (i==0)? managerLabels[ParamSettings]: managerLabels[ParamGame],
+                    (i==0)? managerLabels[ParamGame]: managerLabels[ParamSettings]
+				);
 			wcscat(outmsg, buf);
             result = false;
 			continue;
@@ -459,7 +459,7 @@ READ-ONLY, and try again.", fileName);
 	
 	UpdateInfo();
 	
-	if (!quiet) MessageBox(hWnd, outmsg, lang("MsgTitle"), 0);	
+	if (!quiet) MessageBox(hWnd, outmsg, managerLabels[MsgTitle], 0);
     outs += outmsg;
     return result;
 }
@@ -508,7 +508,7 @@ bool RemoveKserv(wstring& gfile, wstring& sfile, wstring& outs, const bool quiet
 
 		wchar_t* fileName = (wchar_t*)((i==0)?gfile.c_str():sfile.c_str());
         if (wcslen(fileName)==0) {
-            wcscat(outmsg, lang("NoActionRequired"));
+            wcscat(outmsg, managerLabels[NoActionRequired]);
             continue;
         }
 
@@ -724,7 +724,7 @@ READ-ONLY, and try again.", fileName);
 	
 	UpdateInfo();
 	
-	if (!quiet) MessageBox(hWnd, outmsg, lang("MsgTitle"), 0);	
+	if (!quiet) MessageBox(hWnd, outmsg, managerLabels[MsgTitle], 0);	
     outs += outmsg;
     return result;
 }
@@ -941,10 +941,10 @@ void InitControls(void)
 		return;
 	}
 	
-	SendMessage(g_exeListControl, CB_ADDSTRING, (WPARAM)0, (LPARAM)lang("NoAction"));
-	SendMessage(g_exeListControl, WM_SETTEXT, (WPARAM)0, (LPARAM)lang("NoAction"));
-	SendMessage(g_setListControl, CB_ADDSTRING, (WPARAM)0, (LPARAM)lang("NoAction"));
-	SendMessage(g_setListControl, WM_SETTEXT, (WPARAM)0, (LPARAM)lang("NoAction"));
+	SendMessage(g_exeListControl, CB_ADDSTRING, (WPARAM)0, (LPARAM)managerLabels[NoAction]);
+	SendMessage(g_exeListControl, WM_SETTEXT, (WPARAM)0, (LPARAM)managerLabels[NoAction]);
+	SendMessage(g_setListControl, CB_ADDSTRING, (WPARAM)0, (LPARAM)managerLabels[NoAction]);
+	SendMessage(g_setListControl, WM_SETTEXT, (WPARAM)0, (LPARAM)managerLabels[NoAction]);
 	
 	while(true)
 	{
@@ -985,8 +985,8 @@ void InitControls(void)
 
 void ShowHelpText()
 {
-	if (MessageBox(hWnd, lang("HelpText"), lang("HelpTextTitle"), MB_YESNO) == IDYES) {
-		ShellExecute(hWnd, L"open", lang("ManualPath"), NULL, NULL, SW_SHOWNORMAL);
+	if (MessageBox(hWnd, managerLabels[HelpText], managerLabels[HelpTextTitle], MB_YESNO) == IDYES) {
+		ShellExecute(hWnd, L"open", managerLabels[ManualPath], NULL, NULL, SW_SHOWNORMAL);
 	}
 	
 	return;
@@ -1189,10 +1189,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,
  	if(InitApp(hInstance, lpCmdLine) == false)
 		return 0;
 		
-	readConfig(L".\\config.txt");
+	/*readConfig(L".\\config.txt");
 	_getConfig("kload", "lang", DT_STRING, 1, setupConfig);
 		
-	readLang(setupLang, hInstance);
+	readLang(setupLang, hInstance);*/
 		
 	//detect the folder setup is executed from
 	wchar_t temp[BUFLEN];

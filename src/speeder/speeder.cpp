@@ -18,7 +18,7 @@
 
 //#include "apihijack.h"
 
-#define lang(s) getTransl("speeder",s)
+//#define lang(s) getTransl("speeder",s)
 
 //#include <map>
 //#include <list>

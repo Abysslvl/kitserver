@@ -12,7 +12,7 @@
 #include "hook_addr.h"
 #include "utf8.h"
 #include "crc32.h"
-#define lang(s) getTransl("kload",s)
+//#define lang(s) getTransl("kload",s)
 
 #include <vector>
 #include <algorithm>

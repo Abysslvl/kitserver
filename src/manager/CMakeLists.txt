@@ -6,7 +6,6 @@ add_executable(${PROJECT_NAME} WIN32
 	${CONFIGS_OBJ}
 	${IMAGEUTIL_OBJ}
 	${DETECT_OBJ}
-	${LANG_OBJ}
 	${VISUAL_STYLES}
 )
 

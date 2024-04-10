@@ -19,7 +19,7 @@
 #include "replay.h"
 #include "bal.h"
 
-#define lang(s) getTransl("fserv",s)
+//#define lang(s) getTransl("fserv",s)
 
 #include <map>
 #include <list>

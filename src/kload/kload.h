@@ -26,7 +26,7 @@ KEXPORT PESINFO* getPesInfo();
 #define GETPESINFO
 KEXPORT void RegisterKModule(KMOD *k);
 KEXPORT void getConfig(char* section, char* name, BYTE dataType, DWORD a, PROCESSCONFIG callback);
-KEXPORT const wchar_t* getTransl(char* section, char* key);
+//KEXPORT const wchar_t* getTransl(char* section, char* key);
 
 KEXPORT bool MasterHookFunction(DWORD call_site, DWORD numArgs, void* target);
 KEXPORT bool MasterUnhookFunction(DWORD call_site, void* target);

@@ -9,8 +9,8 @@
 
 using namespace std;
 
-extern const wchar_t* _getTransl(char* section, char* key);
-#define lang(s) _getTransl("setup",s)
+//extern const wchar_t* _getTransl(char* section, char* key);
+//#define lang(s) _getTransl("setup",s)
 
 #define BUFLEN 4096
 

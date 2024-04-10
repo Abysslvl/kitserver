@@ -40,7 +40,7 @@ using namespace stdext;
 #include "utf8.h"
 #include "names.h"
 
-#define lang(s) getTransl("afsio",s)
+//#define lang(s) getTransl("afsio",s)
 
 #define SWAPBYTES(dw) \
     ((dw<<24 & 0xff000000) | (dw<<8  & 0x00ff0000) | \
