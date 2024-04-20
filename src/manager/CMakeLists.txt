@@ -1,8 +1,8 @@
 project(manager)
 
 add_executable(${PROJECT_NAME} WIN32
-	manager.cpp manager.h manager.rc
-	setupgui.cpp setupgui.h
+	"manager.cpp" "manager.h" "manager.rc"
+	"setupgui.cpp" "setupgui.h"
 	${CONFIGS_OBJ}
 	${IMAGEUTIL_OBJ}
 	${DETECT_OBJ}
