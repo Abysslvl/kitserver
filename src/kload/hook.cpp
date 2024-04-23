@@ -1131,7 +1131,7 @@ KEXPORT void PatchCode(DWORD addr, void* patch, size_t len)
 	    BYTE* bptr = (BYTE*)addr;
 	    DWORD protection = 0;
 	    DWORD newProtection = PAGE_EXECUTE_READWRITE;
-	    if (VirtualProtect(bptr, (len+1)/4*4, newProtection, &protection)) {
+	    if (VirtualProtect(bptr, len, newProtection, &protection)) {
             memcpy(bptr, patch, len);
 	        TRACE(L"Patched code at address (%08x): %d bytes", addr, len);
 	    }
@@ -1223,6 +1223,36 @@ KEXPORT void HookCallPoint(DWORD addr, void* func, int codeShift, int numNops, b
             LOG(L"FAILED to restore protection at %p", bptr);
         }
 	}
+}
+
+KEXPORT void HookJmpPoint(DWORD addr, void* func, int codeShift, int numNops, bool addRetn)
+{
+    DWORD target = (DWORD)func + codeShift;
+    if (addr && target)
+    {
+        BYTE* bptr = (BYTE*)addr;
+        DWORD protection = 0;
+        DWORD newProtection = PAGE_EXECUTE_READWRITE;
+        if (VirtualProtect(bptr, 16, newProtection, &protection)) {
+            bptr[0] = 0xe9;
+            DWORD* ptr = (DWORD*)(addr + 1);
+            ptr[0] = target - (DWORD)(addr + 5);
+            // padding with NOPs
+            for (int i = 0; i < numNops; i++) bptr[5 + i] = 0x90;
+            if (addRetn)
+                bptr[5 + numNops] = 0xc3;
+            TRACE(L"Function (%08x) HOOKED at address (%08x)", target, addr);
+        }
+        else
+        {
+            LOG(L"FAILED to hook function (%08x) at (%08x)", target, addr);
+        }
+        TRACE(L"protection=%08x, newProtection=%08x",
+            protection, newProtection);
+        if (!VirtualProtect(bptr, 16, protection, &newProtection)) {
+            LOG(L"FAILED to restore protection at %p", bptr);
+        }
+    }
 }
 
 KEXPORT DWORD GetTargetAddress(DWORD addr)

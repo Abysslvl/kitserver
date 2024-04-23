@@ -109,6 +109,7 @@ DWORD hookedCopyString(DWORD dest, DWORD destLen, DWORD src, DWORD srcLen);
 KEXPORT DWORD HookIndirectCall(DWORD addr, void* func);
 KEXPORT void HookIndirectCall2(DWORD addr, void* func);
 KEXPORT void HookCallPoint(DWORD addr, void* func, int codeShift, int numNops, bool addRetn=false);
+KEXPORT void HookJmpPoint(DWORD addr, void* func, int codeShift, int numNops, bool addRetn = false);
 KEXPORT DWORD GetTargetAddress(DWORD addr);
 KEXPORT void PatchCode(DWORD addr, void* patch, size_t len);
 
