@@ -4,8 +4,9 @@
 #include <Windows.h>
 #include "manage.h"
 
-// ADDRESSES for kserv.cpp
+// ADDRESSES for leagues.cpp
 BYTE allowedGames[] = {
+    gvPES2013v103,
     gvPES2013v104
 };
 
@@ -27,7 +28,11 @@ constexpr DWORD codeArray[][CODELEN] = {
     // PES2013 v1.02
     NOCODEADDR
     // PES2013 v1.03
-    NOCODEADDR
+    {
+        0x526352, 0x525EE1, 0x525BF0, 0x525C20, 0x525C33,
+        0x523B90, 0x523BF6,
+        0x1183358, 0x520DBC,
+    },
     // PES2013 v1.04 
     {
         0x531FC2, 0x531B41, 0x531850, 0x531880, 0x531893,
@@ -53,7 +58,9 @@ constexpr DWORD dataArray[][DATALEN] = {
     // PES2013 v1.02
     NODATAADDR
     // PES2013 v1.03
-    NODATAADDR
+    {
+       0x1406418, 0x1406558, 0x15D3134, 0x14065B8,
+    },
     // PES2013 v1.04
     {
        0x140A280, 0x140A3C0, 0x15E0200, 0x140A420, 
