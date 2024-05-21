@@ -1,0 +1,4 @@
+# This file configures the leagues in exhibition match
+# Format: <id>, "<club-name>", "<logo-name>", <flag>
+# Example: 07, "English League", "category_04", 10
+

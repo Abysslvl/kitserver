@@ -3,6 +3,7 @@ afs.root = "example"
 
 [kload]
 dll = afsio
+dll = leagues
 dll = kserv
 dll = fserv
 dll = afs2fs

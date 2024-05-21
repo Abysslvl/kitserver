@@ -79,6 +79,9 @@ If you are new to Kitserver, please make sure you read the
     <tr><th><b>afs2fs.dll</b></th>
         <td>Manage AFS (.img) game content using custom files and folders.</td>
     </tr>
+    <tr><th><b>leagues.dll</b></th>
+        <td>Allows you to add custom leagues to the game using map file.</td>
+    </tr>
     <tr><th><b>kserv.dll</b></th>
         <td>Assign your kits (from GDB) to any team you want.</td>
     </tr>
@@ -86,8 +89,7 @@ If you are new to Kitserver, please make sure you read the
         <td>Assign your face/hair (from GDB) to any player you want.</td>
     </tr>
     <tr><th><b>lodmixer.dll</b></th>
-        <td>Misc visual tweaks, fine-tune LOD for players and referees.</span>
-        </td>
+        <td>Misc visual tweaks, fine-tune LOD for players and referees.</td>
     </tr>
     <tr><th><b>speeder.dll</b></th>
         <td>Adjust the game speed (increase/decrease).</td>
@@ -354,9 +356,73 @@ afs-root), then the "conflicts" are resolved the same way as they are with BINs 
 <img src="names.png"/>
 </p>
 
+
+<a name="afs2fs"><br /></a>
+<p><a class="backlink" href="#">Top</a></p>
+<h3>6. League Server (leagues.dll)</h3>
+    
+<p>
+League server is responsible for serving leagues from a map file, setting the slot, name, logo and flag of each league. The main feature of it 
+is that you can add more leagues than the default game (the limit is 26 leagues, the original game only has 10). The league server only works
+in exhibition match, and able you to use more blocks from leagues structure bin file. Also adds a directly seleccion of ucl teams in ucl mode.
+</p>
+
+<h5>6.1 How to configure</h5>
+ 
+<p>
+The GDB contains a folder named <b>leagues</b>, and inside them a single file called <b>map.txt</b>.
+This file tells kitserver where to find the game leagues, and how to settings all of them.
+You can setup your leagues in the map file, the limit es 26 leagues.
+</p>
+
+<p>Setup your leagues is very easy, you need to know about the 4 params required for whatever league you want to add to the game:<br/><br/>
+<b>1. League slot:</b> all leagues in the game have a "space" for set which teams the league store, that spaces exist in a single file,
+in the <b>dt0f.img - 1982 bin file</b>, in that you can find the 23 original league blocks (0 - 22) for national and club leagues, 
+you need to know which league slot you will to use for your league:
+</p>
+    
+<img src="leagues1.png"/>
+
+<p>Also you can add new league blocks in the 1982 bin file (no limit), for store the teams of the new leagues you want to create
+, but for the game and league server the new league blocks you add, for example 23, 24, 25 ... in really will be readed like: 40, 41, 42, 
+keep that in mind for when you map the league.</p>
+
+<p><b>2. League name:</b> basically the name of the league, for example: English League, French League, Fantasy League, or whatever name
+you want.</p>
+
+<p><b>3. League logo:</b> that parameter refers to the category image file you want to use for your league, these files are store 
+in the <b>dt06.img - 1359 bin file</b>, and you can use whatever .tex only setting the .tex name when you map your league,
+for example <b>"category_04"</b> refers to <b>"category_04.tex"</b>, also you can add more .tex files and use these for your leagues:</p>
+
+<img src="leagues2.png" />
+
+<p><b>3. League flag:</b> in PES 2013, some leagues have a flag, that indicates the nationality of the league, for example if the league is a 
+french league or germany league, etc. The game have 8 flags, and you can use whatever flag in any league you will map, for that reason you need
+to know the ID's, for set the flag correctly in the map file, the ID of the flags are:<br /> 
+<br />England flag (ID: 10)
+<br />France flag (ID: 11)
+<br />Spain flag (ID: 12)
+<br />Italy flag (ID: 13)
+<br />Portugal flag (ID: 14)
+<br />Netherlands flag (ID: 15)
+<br />Brazil flag (ID: 16)
+<br />Japan flag (ID: 17)
+<br />None flag (ID: 255)</p>
+
+<p>Well, if you know the 4 parameters you want to use for your league, you only need to write that in the map file, following the next format:
+    <pre>
+# This file configures the leagues in exhibition match
+# Format: &lt;id&gt;, "&lt;club-name&gt;", "&lt;logo-name&gt;", &lt;flag&gt; 
+# Example: 07, "English League", "category_04", 10
+
+07, "Premier League", "PremierLeague", 10
+</pre>
+</p>
+
+
 <a name="kserv"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
-<h3>6. Kserv Module (kserv.dll)</h3>
+<h3>7. Kserv Module (kserv.dll)</h3>
 
 <p>
 Kserv module is responsible for serving kits from the GDB ("<b>G</b>ame content <b>D</b>ata<b>B</b>ase") during the game. The main feature of it is that you are not limited to the slots that dt0c.img has for the kits, and you can assign a kit to any team. 
@@ -366,7 +432,7 @@ Kserv module is responsible for serving kits from the GDB ("<b>G</b>ame content 
 Kserv was historically the first module implemented in the original Kitserver program, made for PES3. That's where the <b>Kitserver</b> name originated from. Later, as more functionality were introduced as new modules, to avoid confusion, we changed the name of the module that serves kits to <b>kserv</b>, while Kitserver name now refers to the entire program.
 </p>
 
-<h5>6.1 GDB organization</h5>
+<h5>7.1 GDB organization</h5>
 
 <p>
 The GDB contains a folder named <b>uni</b>, which is responsible for storing
@@ -454,7 +520,7 @@ find/read the folder, just use latin characters, digits, underscore, and the das
 
 <img src="kserv-exhib.png" />
 
-<h5>6.2 European kits</h5>
+<h5>7.2 European kits</h5>
 
 <p>A team may also have an alternative set of kits, which are only used in 
 European club competitions, such as UEFA Champions League and UEFA Europa 
@@ -496,7 +562,7 @@ IMPORTANT NOTE TO KITMAKERS:<br />
 BMP kits are no longer supported, please use PNG format instead.
 </p>
 
-<h5>6.3. config.txt</h5>
+<h5>7.3. config.txt</h5>
 
 <p>
 This is the attribute configuration file.
@@ -719,7 +785,7 @@ By default, the usage of "description" attribute is enabled, but if you want, yo
 use.description = 0
 </pre>
 
-<h5>6.4. "Techfit" models</h5>
+<h5>7.4. "Techfit" models</h5>
 
 <p>In their DLC updates, KONAMI included new models which use different kit
 textures - the one where two variants of a kit coexist in the same picture:
@@ -744,7 +810,7 @@ techfit.model = 44
 ...
 </pre>
 
-<h5>6.5. "Tight" models</h5>
+<h5>7.5. "Tight" models</h5>
 
 <p>Another type of special model is Puma Tight-fit.
 It allows to make any normal kit become tight-fitting kit (good examples of
@@ -767,7 +833,7 @@ tight.model = 7
 
 <a name="fserv"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
-<h3>7. Faceserver (fserv.dll)</h3>
+<h3>8. Faceserver (fserv.dll)</h3>
 
 <p>
 Faceserver makes it possible to load as many faces and hair from the GDB as 
@@ -779,7 +845,7 @@ hair slots, that only exist during run-time.
 
 <img src="fserv.png"/>
 
-<h5>7.1. How to find out ID for a player</h5>
+<h5>8.1. How to find out ID for a player</h5>
 <p>
 If you have faceserver enabled (which it is by default), just start the game, and then in the <b>log</b> folder, there should appear a text file called <span style="color:#060"><b>playerlist.txt</b></span>. It will contain the IDs for all the players that you have in your game, sorted alphabetically for easy searching, including the user-defined players that were created from scratch in Edit mode (those typically take IDs starting from 1048576).
 </p>
@@ -787,7 +853,7 @@ If you have faceserver enabled (which it is by default), just start the game, an
 <p>The only player ID not available in playlist.txt file is the ID for you BAL (Be-A-Legend) player. However, it looks like that ID is always: 16777376.
 </p>
 
-<h5>7.2. How to configure</h5>
+<h5>8.2. How to configure</h5>
 <p>
 Faceserver uses a map file (<b>GDB/faces/map.txt</b>), similar in format to Kserv: you specify player's unique ID, followed by a filename for his face, and optionally followed by a filename for his hair:<br />
 </p>
@@ -821,7 +887,7 @@ Here are some examples of entries in map.txt:
 </pre>
 </p>
 
-<h5>7.3. Network play</h5>
+<h5>8.3. Network play</h5>
 <p>
 Faceserver should work fine in all online modes, although i have not 
 done a lot of testing with it.
@@ -829,7 +895,7 @@ done a lot of testing with it.
 
 <a name="lodmixer"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
-<h3>8. LOD Mixer (lodmixer.dll)</h3>
+<h3>9. LOD Mixer (lodmixer.dll)</h3>
 
 <p>
 LOD-Mixer is the module that allows to fine-tune some aspects of PES 2013 graphics engine.<br />
@@ -843,7 +909,7 @@ to use Kitserver's <a href="#config">configuration tool</a>
 <img src="config-video.png" />
 </p>
 
-<h5>8.1. Aspect Ratio.</h5>
+<h5>9.1. Aspect Ratio.</h5>
 <p>
 Many LCD monitors are neither 4:3 nor 16:9. Often, a 16:10 ratio is
 used, or even 16:9.6. This results in the picture being distored: players either
@@ -866,7 +932,7 @@ screen, we need to account for that. Setting aspect ratio to 1.6 (which is a
 natural AR for my laptop) does the trick.
 </p>
 
-<h5>8.2. Screen Resolution.</h5>
+<h5>9.2. Screen Resolution.</h5>
 <p>
 You can set any screen resolution you want, if you play in a Windowed mode. Even
 crazy screens like 1234x487 will work, but you're likely to suffer from 
@@ -877,7 +943,7 @@ accidently choose an unsupported fullscreen resolution, then PES should still
 be able to start in a window.
 </p>
 
-<h5>8.3. Picture Quality</h5>
+<h5>9.3. Picture Quality</h5>
 <p>
 Although this is now a rare case, there are still situations, where the
 game (and the settings.exe) do not correctly analyze the capability of the
@@ -895,7 +961,7 @@ chosen picture quality, the game will most likely crash or exit abnormally.
 </p>
 
 
-<h5>8.4. Player and referees LOD configuration.</h5>
+<h5>9.4. Player and referees LOD configuration.</h5>
 <p>
 LOD (Level-Of-Detail) algorithms are used in graphics engines to improve both
 the picture quality and the speed of rendering, when drawing objects at various
@@ -947,7 +1013,7 @@ normal. This may improve the framerate, although at the expense of picture
 quality. To achieve that, <b>move the sliders to the left.</b>
 </p>
 
-<h5>8.5. Choosing optimal LOD config</h5>
+<h5>9.5. Choosing optimal LOD config</h5>
 
 <P>
 Configuring LOD well takes time and is best done via trial-and-error method. 
@@ -985,7 +1051,7 @@ the smooth frame-rate.
 
 <a name="speeder"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
-<h3>9. Speeder module (speeder.dll)</h3>
+<h3>10. Speeder module (speeder.dll)</h3>
 
 <p>Not everyone is satisfied with the pace of the gameplay. It must be said
 that it is not an easy thing to get this aspect of simulating a football 
@@ -1023,7 +1089,7 @@ count.factor = 0.95
 
 <a name="sides"><br /></a>
 <p><a class="backlink" href="#">Top</a></p>
-<h3>10. Sides module (sides.dll)</h3>
+<h3>11. Sides module (sides.dll)</h3>
 
 <p>This module allows to change sides freely during non-exhibition matches.
 Useful, if you like to play tournaments with your friends, and want them to
