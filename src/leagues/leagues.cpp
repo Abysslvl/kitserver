@@ -91,6 +91,8 @@ HRESULT STDMETHODCALLTYPE initModule(IDirect3D9* self, UINT Adapter,
     unhookFunction(hk_D3D_CreateDevice, initModule);
     LOG(L"Initializing Leagues Module");
 
+    customLeague = 0xff;
+
     codeMakeLeague = code[C_MAKE_LEAGUE];
     codeBeforeReadFlag = code[C_BEFORE_READ_FLAG];
     retReadBlocks = code[C_READ_TOTAL_BLOCKS] + 5;
