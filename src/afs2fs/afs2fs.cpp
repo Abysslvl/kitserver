@@ -436,7 +436,7 @@ void afsConfigImgDir(char* pName, const wchar_t* pValue, DWORD a)
     {
         // relative root
         wstring root(getPesInfo()->myDir);
-        root += L"afs-root\\";
+        root += L"liveafs\\";
         root += s;
         _config._roots.push_back(root);
         LOG(L"Config: afs.root: {%s}", root.c_str());
